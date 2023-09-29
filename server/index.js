@@ -1,10 +1,12 @@
-const express = require('express');
-require('dotenv').config();
+import express from 'express';
+import dotenv from 'dotenv';
 
-const log = require('./utils/logger');
-const logMiddleware = require('./middlewares/logMiddleware');
-const corsMiddleware = require('./middlewares/corsMiddleware');
-const homeController = require('./controllers/homeController');
+import log from './utils/logger.js';
+import logMiddleware from './middlewares/logMiddleware.js';
+import corsMiddleware from './middlewares/corsMiddleware.js';
+import homeController from './controllers/homeController.js';
+
+dotenv.config();
 
 const app = express();
 

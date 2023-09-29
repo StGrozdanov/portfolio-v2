@@ -1,4 +1,4 @@
-const winston = require('winston');
+import winston from 'winston/lib/winston.js';
 
 const logFormat = winston.format.combine(winston.format.timestamp(), winston.format.printf((info) => {
     return `timestamp: ${info.timestamp} level: ${info.level} message: ${info.message}`;
@@ -10,10 +10,10 @@ const logger = winston.createLogger({
         logFormat,
         winston.format.json(),
         winston.format.colorize(),
-    ) ,
+    ),
     transports: [
         new winston.transports.Console(),
     ],
-  });
+});
 
-  module.exports = logger;
+export default logger;
