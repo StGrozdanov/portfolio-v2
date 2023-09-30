@@ -4,4 +4,4 @@ export default (request, response, next) => {
     response.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Authorization');
 
     next();
-}
+};
