@@ -24,4 +24,34 @@ router.get('/basic-info', (request, response) => {
         });
 });
 
+router.get('/user-skills', (request, response) => {
+    userService
+        .getUserSkillsInfo()
+        .then(results => response.status(200).json(results))
+        .catch((err) => {
+            log.error(err)
+            response.status(500).json({ "errors": "Internal server error" });
+        });
+});
+
+router.get('/user-jobs-and-projects', (request, response) => {
+    userService
+        .getUserJobsAndProjectsInfo()
+        .then(results => response.status(200).json(results))
+        .catch((err) => {
+            log.error(err)
+            response.status(500).json({ "errors": "Internal server error" });
+        });
+});
+
+router.get('/user-socials', (request, response) => {
+    userService
+        .getUserSocialMediaInfo()
+        .then(results => response.status(200).json(results))
+        .catch((err) => {
+            log.error(err)
+            response.status(500).json({ "errors": "Internal server error" });
+        });
+});
+
 export default router;
