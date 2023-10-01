@@ -22,3 +22,7 @@ export const getUserSkillsQuery = `SELECT JSON_EXTRACT(technology_stack, '$.tech
 export const getUserJobsAndProjectsQuery = `SELECT jobs, projects FROM users`;
 
 export const getUserSocialMediaQuery = `SELECT social_media AS socialMedia FROM users`;
+
+export const updateBaseUserInfoQuery = `UPDATE users SET about_me = :aboutMe, cv_link = :cvLink, email = :email WHERE users.id = :id;`;
+
+export const userExistsQuery = `SELECT id FROM users WHERE id = :id;`;

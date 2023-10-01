@@ -1,8 +1,12 @@
 import winston from 'winston/lib/winston.js';
 
-const logFormat = winston.format.combine(winston.format.timestamp(), winston.format.printf((info) => {
-    return `timestamp: ${info.timestamp} level: ${info.level} message: ${info.message}`;
-}));
+const logFormat = winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.errors({ stack: true }),
+    winston.format.printf((info) => {
+        return `timestamp: ${info.timestamp} level: ${info.level} message: ${info.message}`;
+    })
+);
 
 const logger = winston.createLogger({
     level: 'info',

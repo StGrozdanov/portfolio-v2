@@ -10,3 +10,12 @@ export const getUserJobsAndProjectsInfo = () => db.query(queries.getUserJobsAndP
 export const getUserSkillsInfo = () => db.query(queries.getUserSkillsQuery);
 
 export const getUserSocialMediaInfo = () => db.query(queries.getUserSocialMediaQuery);
+
+export const updateBaseUserInfo = async (input) => {
+    const result = await db.query(queries.updateBaseUserInfoQuery, { ...input })
+    if (result.affectedRows > 0) {
+        return getBaseUserInfo()
+    } else {
+        throw new Error('unsuccessfull update attempt');
+    }
+};
