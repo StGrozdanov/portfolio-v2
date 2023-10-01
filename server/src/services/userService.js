@@ -19,3 +19,12 @@ export const updateBaseUserInfo = async (input) => {
         throw new Error('unsuccessfull update attempt');
     }
 };
+
+export const updateUserSkills = async (input) => {
+    const result = await db.query(queries.updateUserSkillsQuery, { ...input })
+    if (result.affectedRows > 0) {
+        return getUserSkillsInfo()
+    } else {
+        throw new Error('unsuccessfull update attempt');
+    }
+}

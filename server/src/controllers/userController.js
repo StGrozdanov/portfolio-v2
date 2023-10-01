@@ -51,6 +51,22 @@ router.get('/user-skills', (request, response) => {
         });
 });
 
+router.put('/user-skills', async (request, response) => {
+    const validationStatus = await validator.userSkillsInputIsValid(request.body)
+
+    if (!validationStatus.valid) {
+        return response.status(400).json({ 'errors': validationStatus.errors });
+    }
+
+    userService
+        .updateUserSkills(request.body)
+        .then(results => response.status(200).json(results))
+        .catch((err) => {
+            log.error(err)
+            response.status(500).json({ "errors": "Internal server error" });
+        });
+});
+
 router.get('/user-jobs-and-projects', (request, response) => {
     userService
         .getUserJobsAndProjectsInfo()

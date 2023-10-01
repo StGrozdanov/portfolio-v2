@@ -25,6 +25,32 @@ export async function baseUserInfoInputIsValid(baseInfo) {
         validationResponse.valid = false;
     }
 
+    return validationResponse;
+}
+
+export async function userSkillsInputIsValid(userSkills) {
+    const validationResponse = {
+        valid: true,
+        errors: [],
+    }
+
+    if (userSkills.techStack === undefined || userSkills.techStack.length === 0) {
+        validationResponse.errors.push('Tech stack is empty or not present');
+    }
+    if (userSkills.softSkills === undefined || userSkills.softSkills.length === 0) {
+        validationResponse.errors.push('Soft skills is empty or not present');
+    }
+    if (userSkills.hobbies === undefined || userSkills.hobbies.length === 0) {
+        validationResponse.errors.push('Hobbies is empty or not present');
+    }
+    if (userIdIsValid(userSkills.id) === false) {
+        validationResponse.errors.push('Invalid User Id');
+    } else if (await userExists(userSkills.id) === false) {
+        validationResponse.errors.push('User not found');
+    }
+    if (validationResponse.errors.length > 0) {
+        validationResponse.valid = false;
+    }
 
     return validationResponse;
 }

@@ -26,3 +26,9 @@ export const getUserSocialMediaQuery = `SELECT social_media AS socialMedia FROM 
 export const updateBaseUserInfoQuery = `UPDATE users SET about_me = :aboutMe, cv_link = :cvLink, email = :email WHERE users.id = :id;`;
 
 export const userExistsQuery = `SELECT id FROM users WHERE id = :id;`;
+
+export const updateUserSkillsQuery = `UPDATE users
+                                      SET technology_stack = JSON_SET(technology_stack, '$.techStack', JSON_ARRAY(:techStack)),
+                                          soft_skills      = JSON_SET(soft_skills, '$.softSkills', JSON_ARRAY(:softSkills)),
+                                          hobbies          = JSON_SET(hobbies, '$.hobbies', JSON_ARRAY(:hobbies))
+                                      WHERE users.id = :id;`;
