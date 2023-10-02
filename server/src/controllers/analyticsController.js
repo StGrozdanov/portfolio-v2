@@ -31,6 +31,9 @@ router.get('/analytics', (request, response) => {
         .getAnalytics(queryParams[0])
         .then((result) => response.status(200).json(result))
         .catch((err) => {
+            if (err.includes('Unsupported query param')) {
+                return response.status(400).json({"errors": `${err}`})
+            }
             log.error(err)
             response.status(500).json({ "errors": "Internal server error" });
         });

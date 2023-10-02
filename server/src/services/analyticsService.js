@@ -10,6 +10,11 @@ const analyticTypes = {
     yesterday: () => {
         const date = moment().subtract(1, 'days').utc(true).format('YYYY-MM-DD');
         return db.query(queries.getAnalyticsForTheDateQuery, { date })
+    },
+    last7days: () => {
+        const startDate = moment().subtract(7, 'days').utc(true).format('YYYY-MM-DD');
+        const endDate = moment().utc(true).format('YYYY-MM-DD');
+        return db.query(queries.getAnalyticsBetweenTheDatesQuery, { startDate, endDate })
     }
 }
 
