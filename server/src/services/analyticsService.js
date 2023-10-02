@@ -5,8 +5,12 @@ import moment from 'moment';
 const analyticTypes = {
     today: () => {
         const date = moment().utc(true).format('YYYY-MM-DD');
-        return db.query(queries.getAnalyticsForTheDayQuery, { date })
+        return db.query(queries.getAnalyticsForTheDateQuery, { date })
     },
+    yesterday: () => {
+        const date = moment().subtract(1, 'days').utc(true).format('YYYY-MM-DD');
+        return db.query(queries.getAnalyticsForTheDateQuery, { date })
+    }
 }
 
 export const addNewRecord = (input) => {
