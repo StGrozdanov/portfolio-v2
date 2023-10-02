@@ -32,3 +32,8 @@ export const updateUserSkillsQuery = `UPDATE users
                                           soft_skills      = JSON_SET(soft_skills, '$.softSkills', JSON_ARRAY(:softSkills)),
                                           hobbies          = JSON_SET(hobbies, '$.hobbies', JSON_ARRAY(:hobbies))
                                       WHERE users.id = :id;`;
+
+export const updateUserJobsAndProjectsQuery = `UPDATE users
+                                                SET jobs     = :jobs,
+                                                    projects = :projects
+                                                WHERE users.id = :id;`;

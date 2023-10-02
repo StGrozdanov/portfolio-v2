@@ -28,3 +28,15 @@ export const updateUserSkills = async (input) => {
         throw new Error('unsuccessfull update attempt');
     }
 }
+
+export const updateUserJobsAndProjectsInfo = async (input) => {
+    const jsonJobs = JSON.stringify(input.jobs);
+    const jsonProjects = JSON.stringify(input.projects);
+
+    const result = await db.query(queries.updateUserJobsAndProjectsQuery, { id: input.id, jobs: jsonJobs, projects: jsonProjects})
+    if (result.affectedRows > 0) {
+        return getUserJobsAndProjectsInfo()
+    } else {
+        throw new Error('unsuccessfull update attempt');
+    }
+}

@@ -77,6 +77,23 @@ router.get('/user-jobs-and-projects', (request, response) => {
         });
 });
 
+router.put('/user-jobs-and-projects', async (request, response) => {
+    const validationStatus = await validator.userJobsAndProjectsInputIsValid(request.body);
+    console.log(validationStatus)
+
+    if (!validationStatus.valid) {
+        return response.status(400).json({ 'errors': validationStatus.errors });
+    }
+
+    userService
+        .updateUserJobsAndProjectsInfo(request.body)
+        .then(results => response.status(200).json(results))
+        .catch((err) => {
+            log.error(err)
+            response.status(500).json({ "errors": "Internal server error" });
+        });
+});
+
 router.get('/user-socials', (request, response) => {
     userService
         .getUserSocialMediaInfo()
