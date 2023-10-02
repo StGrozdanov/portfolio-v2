@@ -40,3 +40,12 @@ export const updateUserJobsAndProjectsInfo = async (input) => {
         throw new Error('unsuccessfull update attempt');
     }
 }
+
+export const updateUserSocials = async (input) => {
+    const result = await db.query(queries.updateUserSocials, { id: input.id, ...input.socialMedia});
+    if (result.affectedRows > 0) {
+        return getUserSocialMediaInfo()
+    } else {
+        throw new Error('unsuccessfull update attempt');
+    }
+}

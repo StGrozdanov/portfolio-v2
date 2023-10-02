@@ -13,7 +13,7 @@ export async function baseUserInfoInputIsValid(baseInfo) {
     if (urlIsValid(baseInfo.cvLink) === false) {
         validationResponse.errors.push('CV URL is invalid');
     }
-    if (stringIsEmpty(baseInfo.aboutMe) === false) {
+    if (stringIsNotEmpty(baseInfo.aboutMe) === false) {
         validationResponse.errors.push('About me section is empty');
     }
     if (userIdIsValid(baseInfo.id) === false) {
@@ -80,6 +80,39 @@ export async function userJobsAndProjectsInputIsValid(input) {
     return validationResponse;
 }
 
+export async function userSocialMediaIsValid(input) {
+    const validationResponse = {
+        valid: true,
+        errors: [],
+    }
+
+    console.log(`input: ${input.socialMedia.github}`);
+
+    if (userIdIsValid(input.id) === false) {
+        validationResponse.errors.push('Invalid User Id');
+    } else if (await userExists(input.id) === false) {
+        validationResponse.errors.push('User not found');
+    }
+
+    if (stringIsNotEmpty(input.socialMedia.facebook) === false) {
+        validationResponse.errors.push('Facebook property is empty or not present');
+    }
+    if (urlIsValid(input.socialMedia.linkedIn) === false) {
+        validationResponse.errors.push('Linkedin property is not valid URL format');
+    }
+    if (urlIsValid(input.socialMedia.github) === false) {
+        validationResponse.errors.push('Github property is not valid URL format');
+    }
+    if (emailIsValid(input.socialMedia.email) === false) {
+        validationResponse.errors.push('Email property is empty or not present');
+    }
+    if (validationResponse.errors.length > 0) {
+        validationResponse.valid = false;
+    }
+
+    return validationResponse;
+}
+
 export function emailIsValid(email) {
     const emailRegex = /(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/gi;
     return emailRegex.test(email);
@@ -90,7 +123,7 @@ export function urlIsValid(url) {
     return urlRegex.test(url);
 }
 
-export function stringIsEmpty(input) {
+export function stringIsNotEmpty(input) {
     return input?.trim().length > 0;
 }
 

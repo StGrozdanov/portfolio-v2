@@ -79,7 +79,6 @@ router.get('/user-jobs-and-projects', (request, response) => {
 
 router.put('/user-jobs-and-projects', async (request, response) => {
     const validationStatus = await validator.userJobsAndProjectsInputIsValid(request.body);
-    console.log(validationStatus)
 
     if (!validationStatus.valid) {
         return response.status(400).json({ 'errors': validationStatus.errors });
@@ -97,6 +96,22 @@ router.put('/user-jobs-and-projects', async (request, response) => {
 router.get('/user-socials', (request, response) => {
     userService
         .getUserSocialMediaInfo()
+        .then(results => response.status(200).json(results))
+        .catch((err) => {
+            log.error(err)
+            response.status(500).json({ "errors": "Internal server error" });
+        });
+});
+
+router.put('/user-socials', async (request, response) => {
+    const validationStatus = await validator.userSocialMediaIsValid(request.body);
+
+    if (!validationStatus.valid) {
+        return response.status(400).json({ 'errors': validationStatus.errors });
+    }
+
+    userService
+        .updateUserSocials(request.body)
         .then(results => response.status(200).json(results))
         .catch((err) => {
             log.error(err)

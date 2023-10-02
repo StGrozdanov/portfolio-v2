@@ -37,3 +37,10 @@ export const updateUserJobsAndProjectsQuery = `UPDATE users
                                                 SET jobs     = :jobs,
                                                     projects = :projects
                                                 WHERE users.id = :id;`;
+
+export const updateUserSocials = `UPDATE users
+                                    SET social_media = JSON_REPLACE(social_media, '$.facebook', :facebook),
+                                        social_media = JSON_REPLACE(social_media, '$.linkedIn', :linkedIn),
+                                        social_media = JSON_REPLACE(social_media, '$.github', :github),
+                                        social_media = JSON_REPLACE(social_media, '$.email', :email)
+                                    WHERE users.id = :id;`;
