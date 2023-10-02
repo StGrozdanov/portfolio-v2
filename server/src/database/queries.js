@@ -44,3 +44,5 @@ export const updateUserSocials = `UPDATE users
                                         social_media = JSON_REPLACE(social_media, '$.github', :github),
                                         social_media = JSON_REPLACE(social_media, '$.email', :email)
                                     WHERE users.id = :id;`;
+
+export const insertVistiationsQuery = `INSERT INTO analytics (date_time, device_type, origin_country, ip_address) VALUE (:date, :deviceType, :originCountry, :ipAddress);`;

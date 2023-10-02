@@ -86,8 +86,6 @@ export async function userSocialMediaIsValid(input) {
         errors: [],
     }
 
-    console.log(`input: ${input.socialMedia.github}`);
-
     if (userIdIsValid(input.id) === false) {
         validationResponse.errors.push('Invalid User Id');
     } else if (await userExists(input.id) === false) {
@@ -105,6 +103,28 @@ export async function userSocialMediaIsValid(input) {
     }
     if (emailIsValid(input.socialMedia.email) === false) {
         validationResponse.errors.push('Email property is empty or not present');
+    }
+    if (validationResponse.errors.length > 0) {
+        validationResponse.valid = false;
+    }
+
+    return validationResponse;
+}
+
+export function analyticsParamsAreValid(input) {
+    const validationResponse = {
+        valid: true,
+        errors: [],
+    }
+
+    if (stringIsNotEmpty(input.ipAddress) === false) {
+        validationResponse.errors.push('IP Address is empty or not present');
+    }
+    if (stringIsNotEmpty(input.deviceType) === false) {
+        validationResponse.errors.push('Device type is empty or not present');
+    }
+    if (stringIsNotEmpty(input.originCountry) === false) {
+        validationResponse.errors.push('Origin country is empty or not present');
     }
     if (validationResponse.errors.length > 0) {
         validationResponse.valid = false;

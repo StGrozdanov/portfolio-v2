@@ -5,6 +5,7 @@ import log from './utils/logger.js';
 import logMiddleware from './middlewares/logMiddleware.js';
 import corsMiddleware from './middlewares/corsMiddleware.js';
 import userController from './controllers/userController.js';
+import analyticsController from './controllers/analyticsController.js';
 import db from './database/database.js';
 
 dotenv.config();
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use(logMiddleware);
 app.use(corsMiddleware);
 app.use('/users', userController);
+app.use(analyticsController);
 app.use('*', (request, response) => {
     response.status(404).json({"error": "resource not found"});
 });
