@@ -28,7 +28,7 @@ router.get('/analytics', (request, response) => {
     }
 
     analyticsService
-        .getAnalytics(queryParams[0])
+        .getAnalytics(request.query)
         .then((result) => response.status(200).json(result))
         .catch((err) => {
             if (err.includes('Unsupported query param')) {
