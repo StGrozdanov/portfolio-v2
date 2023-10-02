@@ -15,37 +15,33 @@ export const updateBaseUserInfo = async (input) => {
     const result = await db.query(queries.updateBaseUserInfoQuery, { ...input })
     if (result.affectedRows > 0) {
         return getBaseUserInfo()
-    } else {
-        throw new Error('unsuccessfull update attempt');
     }
+    return Promise.reject('unsuccessfull update attempt');
 };
 
 export const updateUserSkills = async (input) => {
     const result = await db.query(queries.updateUserSkillsQuery, { ...input })
     if (result.affectedRows > 0) {
         return getUserSkillsInfo()
-    } else {
-        throw new Error('unsuccessfull update attempt');
     }
+    return Promise.reject('unsuccessfull update attempt');
 }
 
 export const updateUserJobsAndProjectsInfo = async (input) => {
     const jsonJobs = JSON.stringify(input.jobs);
     const jsonProjects = JSON.stringify(input.projects);
 
-    const result = await db.query(queries.updateUserJobsAndProjectsQuery, { id: input.id, jobs: jsonJobs, projects: jsonProjects})
+    const result = await db.query(queries.updateUserJobsAndProjectsQuery, { id: input.id, jobs: jsonJobs, projects: jsonProjects })
     if (result.affectedRows > 0) {
         return getUserJobsAndProjectsInfo()
-    } else {
-        throw new Error('unsuccessfull update attempt');
     }
+    return Promise.reject('unsuccessfull update attempt');
 }
 
 export const updateUserSocials = async (input) => {
-    const result = await db.query(queries.updateUserSocials, { id: input.id, ...input.socialMedia});
+    const result = await db.query(queries.updateUserSocials, { id: input.id, ...input.socialMedia });
     if (result.affectedRows > 0) {
         return getUserSocialMediaInfo()
-    } else {
-        throw new Error('unsuccessfull update attempt');
     }
+    return Promise.reject('unsuccessfull update attempt');
 }

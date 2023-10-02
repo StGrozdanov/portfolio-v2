@@ -46,3 +46,5 @@ export const updateUserSocials = `UPDATE users
                                     WHERE users.id = :id;`;
 
 export const insertVistiationsQuery = `INSERT INTO analytics (date_time, device_type, origin_country, ip_address) VALUE (:date, :deviceType, :originCountry, :ipAddress);`;
+
+export const getAnalyticsForTheDayQuery = `SELECT TIME(date_time) AS hour, device_type, origin_country, ip_address FROM analytics WHERE DATE(date_time) = :date;`
