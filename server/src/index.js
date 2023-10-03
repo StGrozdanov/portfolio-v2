@@ -5,6 +5,7 @@ import log from './utils/logger.js';
 import logMiddleware from './middlewares/logMiddleware.js';
 import corsMiddleware from './middlewares/corsMiddleware.js';
 import userController from './controllers/userController.js';
+import s3Controller from './controllers/s3Controller.js';
 import analyticsController from './controllers/analyticsController.js';
 import db from './database/database.js';
 
@@ -26,6 +27,7 @@ app.use(logMiddleware);
 app.use(corsMiddleware);
 app.use('/users', userController);
 app.use(analyticsController);
+app.use('/cv', s3Controller);
 app.use('*', (request, response) => {
     response.status(404).json({"error": "resource not found"});
 });

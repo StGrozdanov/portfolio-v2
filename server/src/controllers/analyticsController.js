@@ -5,7 +5,7 @@ import log from '../utils/logger.js';
 
 const router = express.Router();
 
-router.put('/analytics', (request, response) => {
+router.post('/analytics', (request, response) => {
     const validationResult = validator.analyticsParamsAreValid(request.body);
 
     if (validationResult.valid === false) {
