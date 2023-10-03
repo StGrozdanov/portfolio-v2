@@ -14,6 +14,7 @@ function App() {
       body: formData
     });
   }
+  
   return (
     <form onSubmit={submitHandler}>
       <input onChange={e => setFile(e.target.files[0])} type="file"></input>
