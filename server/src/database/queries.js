@@ -52,3 +52,7 @@ export const getAnalyticsForTheDateQuery = `SELECT TIME(date_time) AS hour, devi
 export const getAnalyticsBetweenTheDatesQuery = `SELECT TIME(date_time) AS hour, device_type, origin_country, ip_address FROM analytics WHERE DATE(date_time) BETWEEN :startDate AND :endDate;`
 
 export const updateCVQuery = `UPDATE users SET cv_link = :URL`;
+
+export const getUserFromDBQuery = `SELECT id, nickname, password FROM users WHERE nickname = :username`;
+
+export const updateUserPasswordQuery = `UPDATE users SET password = :password;`;

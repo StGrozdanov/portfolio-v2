@@ -2,6 +2,7 @@ import express from 'express';
 import * as analyticsService from '../services/analyticsService.js';
 import * as validator from '../utils/validator.js';
 import log from '../utils/logger.js';
+import authMiddleware from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
@@ -21,7 +22,7 @@ router.post('/analytics', (request, response) => {
         });
 });
 
-router.get('/analytics', (request, response) => {
+router.get('/analytics', authMiddleware, (request, response) => {
     const queryParams = Object.keys(request.query);
     if (queryParams.length !== 1) {
         return response.status(400).json({ 'errors': 'Exactly 1 query param is supported per request' });

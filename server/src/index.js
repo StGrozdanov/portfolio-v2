@@ -6,8 +6,10 @@ import logMiddleware from './middlewares/logMiddleware.js';
 import corsMiddleware from './middlewares/corsMiddleware.js';
 import userController from './controllers/userController.js';
 import s3Controller from './controllers/s3Controller.js';
+import authController from './controllers/authController.js';
 import analyticsController from './controllers/analyticsController.js';
 import db from './database/database.js';
+import { initAdminUser } from './services/authService.js';
 
 dotenv.config();
 
@@ -28,8 +30,11 @@ app.use(corsMiddleware);
 app.use('/users', userController);
 app.use(analyticsController);
 app.use('/cv', s3Controller);
+app.use(authController)
 app.use('*', (request, response) => {
-    response.status(404).json({"error": "resource not found"});
+    response.status(404).json({ "error": "resource not found" });
 });
+
+initAdminUser().then(log.info('Successfully initialized admin user')).catch(err => log.error(err));
 
 app.listen(process.env.SERVER_PORT, () => log.info(`Server started on port ${process.env.SERVER_PORT}`));
