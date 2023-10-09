@@ -6,8 +6,32 @@ import authMiddleware from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-router.post('/upload', authMiddleware, upload.single('file'), (request, response) => {
-    s3.upload(request.file)
+router.post('/upload-cv', authMiddleware, upload.single('file'), (request, response) => {
+    s3.uploadCV(request.file)
+        .then(response.status(201).json({ 'status': 'success' }))
+        .catch((err) => log.error(err));
+});
+
+router.patch('/upload-project-image', authMiddleware, upload.single('image'), (request, response) => {
+    s3.uploadProjectImage(request.file, request.body.targetResourceTitle)
+        .then(response.status(201).json({ 'status': 'success' }))
+        .catch((err) => log.error(err));
+});
+
+router.patch('/upload-job-image', authMiddleware, upload.single('image'), (request, response) => {
+    s3.uploadJobImage(request.file, request.body.targetResourceTitle)
+        .then(response.status(201).json({ 'status': 'success' }))
+        .catch((err) => log.error(err));
+});
+
+router.post('/add-partners', authMiddleware, upload.single('image'), (request, response) => {
+    s3.uploadPartnerLogo(request.file)
+        .then(response.status(201).json({ 'status': 'success' }))
+        .catch((err) => log.error(err));
+});
+
+router.post('/add-carousel', authMiddleware, upload.single('image'), (request, response) => {
+    s3.uploadCarouselImage(request.file)
         .then(response.status(201).json({ 'status': 'success' }))
         .catch((err) => log.error(err));
 });

@@ -56,3 +56,22 @@ export const updateCVQuery = `UPDATE users SET cv_link = :URL`;
 export const getUserFromDBQuery = `SELECT id, nickname, password FROM users WHERE nickname = :username`;
 
 export const updateUserPasswordQuery = `UPDATE users SET password = :password;`;
+
+export const updateProjectImageQuery = `UPDATE users
+                                 SET projects = JSON_REPLACE(projects, REPLACE(
+                                        REPLACE(JSON_SEARCH(projects, 'one', :project_name), '"', '')
+                                    , '.title'
+                                    , '.imgUrl'
+                                    ), :img_url)
+                                 WHERE JSON_SEARCH(projects, 'one', :project_name) IS NOT NULL;`;
+export const updateJobImageQuery = `UPDATE users
+                                    SET jobs = JSON_REPLACE(jobs, REPLACE(
+                                            REPLACE(JSON_SEARCH(jobs, 'one', :project_name), '"', '')
+                                        , '.company'
+                                        , '.imgUrl'
+                                        ), :img_url)
+                                    WHERE JSON_SEARCH(jobs, 'one', :project_name) IS NOT NULL;`;
+
+export const uploadPartnerLogoQuery = `UPDATE users SET partners = JSON_ARRAY_APPEND(partners, '$', :img_url);`;
+
+export const uploadCarouselQuery = `UPDATE users SET carousel = JSON_ARRAY_APPEND(partners, '$', :img_url);`;
