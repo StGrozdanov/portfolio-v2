@@ -1,0 +1,26 @@
+@use 'src/scss/common/animations' as *;
+@use 'src/scss/common/fonts' as *;
+
+.basic-info-article {
+    @include fadeInUpAnimation(450ms, 1.5s, 25%);
+
+    h2,
+    h3 {
+        padding-left: 100px;
+    }
+
+    h2 {
+        margin-top: 10px;
+        @include customHeadingFont("bolder");
+    }
+}
+
+.basic-info-summary {
+    @include descriptionFont("bold", .85rem, 1.75rem);
+    padding: 0px 100px 100px 100px;
+    text-align: center;
+}
+
+.orange-span {
+    color: orange;
+}

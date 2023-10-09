@@ -1,0 +1,6 @@
+@use 'src/scss/common/animations' as *;
+
+.img {
+    @include zoomInAnimation;
+}
+
