@@ -7,11 +7,8 @@ import * as queries from '../database/queries.js'
 dotenv.config();
 
 export const initAdminUser = async () => {
-    bcrypt
-        .hash(process.env.ADMIN_PASSWORD, Number(process.env.SALT_ROUNDS))
-        .then(function (hashedPassword) {
-            return db.query(queries.updateUserPasswordQuery, { password: hashedPassword })
-        });
+    const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, Number(process.env.SALT_ROUNDS));
+    return db.query(queries.updateUserPasswordQuery, {password: hashedPassword});
 }
 
 export const login = async (userData) => {

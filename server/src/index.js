@@ -19,7 +19,9 @@ db
         log.info('Successfully connected to MariaDB server');
         connection.release();
     })
-    .catch(err => log.error(`Error on connecting to MariaDB server - ${err}`));
+    .catch(err => {
+        log.error(`Error on connecting to MariaDB server - ${err}`);
+    });
 
 const app = express();
 
