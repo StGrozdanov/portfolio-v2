@@ -1,6 +1,33 @@
 version: '3.8'
 services:
+  portfolio_server:
+    container_name: portfolio_server
+    build: ./server
+    command: npm start
+    restart: always
+    volumes:
+      - '.:/app/server:rw'
+      - '/app/server/node_modules'
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mariadb
+    networks:
+      - default
+  portfolio_client:
+    container_name: portfolio_client
+    build: ./client
+    command: npm start
+    restart: always
+    volumes:
+      - '.:/app/client:rw'
+      - '/app/client/node_modules'
+    ports:
+      - "3000:3000"
+    networks:
+      - default
   mariadb:
+    container_name: mariadb
     image: mariadb
     restart: always
     environment:
@@ -10,3 +37,8 @@ services:
       - '3306:3306'
     volumes:
       - ./sql-init.sql:/docker-entrypoint-initdb.d/sql-init.sql
+    networks:
+      - default
+  
+networks:
+  default: {}
