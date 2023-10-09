@@ -8,7 +8,7 @@
     position: absolute;
     width: 50vw;
     bottom: 0;
-    @include fadeInUpAnimation(0s, 1s);
+    @include fadeInUpAnimation(200ms, 1s);
 
     li {
         list-style: none;
