@@ -16,16 +16,20 @@ services:
       - default
   portfolio_client:
     container_name: portfolio_client
-    build: ./client
+    build: 
+      context: client
+      target: development
     command: npm start
     restart: always
     volumes:
-      - '.:/app/client:rw'
-      - '/app/client/node_modules'
+      - ./client/src:/code/src
+      - /code/node_modules
     ports:
-      - "3000:3000"
+      - 3000:3000
     networks:
-      - default
+      - default 
+    depends_on:
+      - portfolio_server
   mariadb:
     container_name: mariadb
     image: mariadb
