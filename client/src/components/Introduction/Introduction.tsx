@@ -1,51 +1,21 @@
-import { useCallback, useEffect, useState } from 'react';
 import styles from './Introduction.module.scss';
-import { portfolioAPI } from '../../services/portfolio-service';
-import { BasicInfoResponse } from '../../services/interfaces/portfolio-service-interfaces';
-import { ImageProps } from '../../interfaces/component-props-interfaces';
 import AboutMeArticle from './modules/components/AboutMeArticle/AboutMeArticle';
 import CarouselArticle from './modules/components/CarouselArticle/CarouselArticle';
 import Partners from './modules/components/Partners/Partners';
+import Resume from './modules/components/Resume/Resume';
+import { useFetchBasicUserInfo } from './modules/hooks/useFetchBasicUserInfo';
 
 export default function Introduction() {
-    const [basicUserInfo, setBasicUserInfo] = useState<BasicInfoResponse>();
-    const [progress, setProgress] = useState(0);
-    const [currentCarouselLabel, setCurrentCarouselLabel] = useState<string>('');
-
-    useEffect(() => {
-        portfolioAPI
-            .getBasicUserInfo()
-            .then(response => {
-                setBasicUserInfo(response);
-                setCurrentCarouselLabel(response.carousel[0].label);
-            })
-            .catch(err => console.log(err));
-    }, []);
-
-    useEffect(() => {
-        setTimeout(() => {
-            progress < 100 ? setProgress((oldProgress) => oldProgress + 0.04) : setProgress(0);
-        }, 1);
-    }, [progress]);
-
-    const changeHandler = useCallback((label: string) => {
-        setCurrentCarouselLabel(label);
-        setProgress(0);
-    }, []);
-
-    const carouselData: ImageProps = {
-        images: basicUserInfo?.carousel,
-        changeHandler
-    };
-
+    const { basicUserInfo, carouselData } = useFetchBasicUserInfo();
+    
     return (
         <section className={styles.container}>
             <AboutMeArticle description={basicUserInfo?.aboutMe} />
+            <Resume link={basicUserInfo?.cvLink} />
             <CarouselArticle
-                currentLabel={currentCarouselLabel}
-                cvLink={basicUserInfo?.cvLink}
+                currentLabel={carouselData.currentCarouselLabel}
                 images={carouselData}
-                progress={progress}
+                progress={carouselData.slideProgress}
             />
             <Partners partners={basicUserInfo ? basicUserInfo.partners : []} />
         </section>

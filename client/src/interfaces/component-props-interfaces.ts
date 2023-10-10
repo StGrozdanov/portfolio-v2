@@ -1,6 +1,8 @@
 import { CarouselImage } from "../services/interfaces/portfolio-service-interfaces";
 
-export interface ImageProps {
-    images?: CarouselImage[],
-    changeHandler?: (label: string) => void,
+export interface CarouselProps {
+    images: CarouselImage[],
+    carouselChangeHandler: (label: string) => void,
+    currentCarouselLabel: string,
+    slideProgress: number,
 }

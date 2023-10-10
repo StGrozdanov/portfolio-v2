@@ -1,18 +1,17 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
-import { ImageProps } from "../../interfaces/component-props-interfaces";
+import { CarouselProps } from "../../interfaces/component-props-interfaces";
 import Slides from "./modules/components/Slides";
 import styles from './CarouselComponent.module.scss';
 import { useCarouselFadeInAnimation } from "./modules/hooks/useCarouselFadeInAnimation";
 import { ReactElement, ReactNode } from "react";
 
-export default function CarouselComponent(data: ImageProps) {
-    
+export default function CarouselComponent(data: CarouselProps) {
     const slideChangeHandler = (index: number, element: ReactNode) => {
-        const el = element as ReactElement
-        const slideLabel = el.props.label;
-        data.changeHandler && data.changeHandler(slideLabel);
+        const reactElement = element as ReactElement
+        const slideLabel = reactElement.props.label;
+        data.carouselChangeHandler && data.carouselChangeHandler(slideLabel);
     }
 
     return (

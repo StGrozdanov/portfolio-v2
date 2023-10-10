@@ -1,8 +1,8 @@
+import { useBurgerContext } from '../../hooks/useBurgerContext';
 import styles from './Navigation.module.scss';
-import { useState } from 'react';
 
 export default function Navigation() {
-    const [burgerIsExpanded, setBurgerIsExpanded] = useState(false);
+    const { isActive, update } = useBurgerContext();
 
     return (
         <header>
@@ -13,7 +13,7 @@ export default function Navigation() {
                 <ul
                     className={
                         `${styles['nav-menu']} 
-                        ${burgerIsExpanded
+                        ${isActive
                             ? `, ${styles['active-menu']}`
                             : ''
                         }`
@@ -26,11 +26,10 @@ export default function Navigation() {
                     <li className={styles['nav-item']}>Contact Me</li>
                 </ul>
                 <div
-                    className={`${styles.hamburger} ${
-                        burgerIsExpanded ? `, ${styles['active-burger']}` : ''
+                    className={`${styles.hamburger} ${isActive ? `, ${styles['active-burger']}` : ''
                         }`
                     }
-                    onClick={() => burgerIsExpanded ? setBurgerIsExpanded(false) : setBurgerIsExpanded(true)}
+                    onClick={update}
                 >
                     <span className={styles.bar}></span>
                     <span className={styles.bar}></span>

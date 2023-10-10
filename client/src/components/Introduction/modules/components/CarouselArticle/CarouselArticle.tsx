@@ -1,14 +1,12 @@
-import Resume from "../Resume/Resume";
 import CarouselComponent from "../../../../CarouselComponent/CarouselComponent";
 import { Line } from "rc-progress";
 import styles from './CarouselArticle.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { ImageProps } from "../../../../../interfaces/component-props-interfaces";
+import { CarouselProps } from "../../../../../interfaces/component-props-interfaces";
 
 interface CarouselArticleProps {
-    cvLink?: string,
-    images: ImageProps,
+    images: CarouselProps,
     progress: number,
     currentLabel: string,
 }
@@ -16,7 +14,6 @@ interface CarouselArticleProps {
 export default function CarouselArticle(carousel: CarouselArticleProps) {
     return (
         <article className={styles['carousel-article']}>
-            <Resume link={carousel.cvLink} />
             <CarouselComponent {...carousel.images} />
             <Line
                 percent={carousel.progress}
