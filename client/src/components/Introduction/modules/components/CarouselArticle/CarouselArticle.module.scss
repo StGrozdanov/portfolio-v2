@@ -1,5 +1,4 @@
 @use 'src/scss/common/animations' as *;
-@use 'src/scss/common/fonts' as *;
 
 .carousel-article {
     min-width: 51vw;
@@ -43,29 +42,4 @@
         width: 110%;
     }
 
-}
-
-.label {
-    @include customHeadingFont("bold", 1.6rem);
-}
-
-.see-details-article {
-    display: flex;
-    align-content: center;
-    align-items: center;
-    justify-content: space-between;
-    @include descriptionFont("bold");
-    transition: opacity .85s;
-    padding: 30px 50px 0 80px;
-    cursor: pointer;
-}
-
-.link {
-    display: flex;
-    flex-direction: column;
-    @include descriptionFont("bold");
-
-    p {
-        margin: 0;
-    }
 }

@@ -2,7 +2,7 @@
 @use 'src/scss/common/fonts' as *;
 
 .basic-info-article {
-    margin-top: -60px;
+    margin-top: -120px;
     @include fadeInUpAnimation(450ms, 1.5s, 25%);
 
     h2,

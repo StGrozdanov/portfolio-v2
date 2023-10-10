@@ -1,0 +1,26 @@
+@use 'src/scss/common/fonts' as *;
+
+.label {
+    @include customHeadingFont("bold", 1.6rem);
+}
+
+.see-details-article {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+    @include descriptionFont("bold");
+    transition: opacity .85s;
+    cursor: pointer;
+    width: 50vw;
+}
+
+.link {
+    display: flex;
+    flex-direction: column;
+    @include descriptionFont("bold");
+
+    p {
+        margin: 0;
+    }
+}

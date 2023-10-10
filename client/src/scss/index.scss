@@ -11,7 +11,7 @@ body {
   line-height: 1.5;
   background-color: #fff;
   font-size: 0.85rem;
-  overflow: hidden;
+  overflow-x: hidden;
 }   
 
 code {
@@ -32,27 +32,6 @@ code {
 ::selection {
   color: white;
   background: orange;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  margin-top: 13vh;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: orange;
-  height: 300px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }
 
 .carousel * {
