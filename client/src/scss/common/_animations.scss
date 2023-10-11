@@ -14,12 +14,14 @@
     -webkit-animation: fadeInUp $animation-durration ease $animation-delay forwards;
 }
 
-@mixin smoothTransitionHorizontalAnimation($direction: -100%, $durration: 1.5s) {
+@mixin smoothTransitionHorizontalAnimation($direction: -100%, $durration: 1.5s, $delay: 0) {
     opacity: 0;
     transform: translateX($direction);
     -webkit-transform: translateX($direction);
     animation: smoothTransition $durration ease forwards;
     -webkit-animation: smoothTransition $durration ease forwards;
+    animation-delay: $delay;
+    -webkit-animation-delay: $delay;
 }
 
 @mixin smoothTransitionVerticalAnimation($directionX: -100%, $directionY: -100%, $durration: 1.5s) {

@@ -6,7 +6,7 @@
     height: 80vh;
     top: -180px;
     position: relative;
-    @include smoothTransitionHorizontalAnimation(100%, 1.7s);
+    @include smoothTransitionHorizontalAnimation(100%, 1.7s, 700ms);
 
     &::after {
         content: '';
