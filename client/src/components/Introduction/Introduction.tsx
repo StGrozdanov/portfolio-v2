@@ -20,11 +20,11 @@ export default function Introduction() {
                 />
             </section>
             <section className={styles['partners-and-links-article']}>
-                <Partners partners={basicUserInfo ? basicUserInfo.partners : []} />
                 <CarouselLinks
                     currentLabel={carouselData.currentCarouselLabel}
                     progress={carouselData.slideProgress}
                 />
+                <Partners partners={basicUserInfo ? basicUserInfo.partners : []} />
             </section>
         </>
     );

@@ -1,5 +1,6 @@
 @use 'src/scss/common/fonts' as *;
 @use 'src/scss/common/animations' as *;
+@use 'src/scss/common/media' as *;
 
 .label {
     @include customHeadingFont("bold", 1.6rem);
@@ -15,12 +16,21 @@
     cursor: pointer;
     width: 50vw;
     @include smoothTransitionHorizontalAnimation(100%, 1.7s, 700ms);
+
+    @include maxWidthMediaQuery(1024px) {
+        width: 100vw;
+    }
 }
 
 .link {
     display: flex;
     flex-direction: column;
     @include descriptionFont("bold");
+
+
+    @include minWidthMediaQuery(1920px) {
+        font-size: 1.2rem;
+    }
 
     p {
         margin: 0;
