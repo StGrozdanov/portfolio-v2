@@ -16,6 +16,12 @@
         left: 23%;
     }
 
+    @include maxWidthMediaQuery(400px) {
+        position: absolute;
+        top: 510px;
+        left: 23%;
+    }
+
     li {
         list-style: none;
         height: auto;

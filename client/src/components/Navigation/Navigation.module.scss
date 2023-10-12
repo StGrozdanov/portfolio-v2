@@ -141,6 +141,10 @@
         margin-right: 90px;
     }
 
+    @include maxWidthMediaQuery(425px) {
+        margin-right: 40px;
+    }
+
     &:before {
         content: '';
         display: block;

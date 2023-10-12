@@ -11,6 +11,10 @@
         flex-direction: column;
         margin-top: 120px;
     }
+
+    @include maxWidthMediaQuery(425px) {
+        margin-top: 185px;
+    }
 }
 
 .partners-and-links-article {

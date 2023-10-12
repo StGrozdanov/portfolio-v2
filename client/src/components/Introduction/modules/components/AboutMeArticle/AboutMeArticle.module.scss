@@ -43,6 +43,10 @@
     @include maxWidthMediaQuery(1024px) {
         padding: 30px 200px;
     }
+
+    @include maxWidthMediaQuery(768px) {
+        display: none;
+    }
 }
 
 .orange-span {
