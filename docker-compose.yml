@@ -18,7 +18,7 @@ services:
       - "3000:3000"
     volumes:
       - ./client:/usr/src/client
-      - /usr/src/client/node_modules
+      - client_code:/usr/src/client/node_modules
     networks:
       - default 
     depends_on:
@@ -41,3 +41,4 @@ networks:
   default:
 volumes:
   mariadb_data:
+  client_code:
