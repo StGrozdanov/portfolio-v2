@@ -2,6 +2,10 @@
 @use 'src/scss/common/fonts' as *;
 @use 'src/scss/common/media' as *;
 
+a {
+    text-decoration: none;
+}
+
 .cv {
     padding: 20px;
     text-align: center;

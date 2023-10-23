@@ -9,17 +9,19 @@
     align-items: center;
     width: 50vw;
     @include fadeInUpAnimation(200ms, 1s);
-    
+
     @include maxWidthMediaQuery(1024px) {
         position: absolute;
         top: 460px;
-        left: 23%;
+        left: 4%;
+        width: 90%;
     }
 
     @include maxWidthMediaQuery(400px) {
         position: absolute;
         top: 510px;
-        left: 23%;
+        width: 300px;
+        left: 10%;
     }
 
     li {
