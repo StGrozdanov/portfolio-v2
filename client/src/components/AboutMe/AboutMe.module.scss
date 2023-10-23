@@ -1,0 +1,33 @@
+@use 'src/scss/common/fonts' as *;
+
+.container {
+    background-color: black;
+    color: white;
+}
+
+.slogan {
+    padding: 100px 40vw 100px 220px;
+
+    h4 {
+        font-size: 1.1rem;
+    }
+
+    h2 {
+        font-family: Metropolis, sans-serif;
+        font-size: 3rem;
+        font-weight: 900;
+        line-height: 65px;
+        margin: 0;
+
+        span {
+            color: orange;
+        }
+    }
+}
+
+.article-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding-bottom: 50px;
+}

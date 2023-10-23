@@ -1,0 +1,17 @@
+.heading {
+    color: orange;
+}
+
+.list-container {
+    list-style: none;
+
+    li::before {
+        content: "\272F";
+        color: orange;
+        font-weight: bold;
+        display: inline-block;
+        font-size: 1.2rem;
+        width: 1.5rem;
+        margin-left: -2.5rem;
+    }
+}

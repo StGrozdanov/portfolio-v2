@@ -10,3 +10,9 @@ export interface BasicInfoResponse {
     partners: string[],
     carousel: CarouselImage[],
 }
+
+export interface AboutMeResponse {
+    techStack: string[],
+    softSkills: string[],
+    hobbies: string[],
+}

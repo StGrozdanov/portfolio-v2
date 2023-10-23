@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BasicInfoResponse } from "./interfaces/portfolio-service-interfaces";
+import { AboutMeResponse, BasicInfoResponse } from "./interfaces/portfolio-service-interfaces";
 
 const portfolioApiInstance = axios.create({
     baseURL: process.env.REACT_APP_PORTFOLIO_SERVICE_URL,
@@ -7,6 +7,7 @@ const portfolioApiInstance = axios.create({
 });
 
 const toBasicUserInfo = (response: BasicInfoResponse): BasicInfoResponse => response;
+const toAboutMeInfo = (response: AboutMeResponse): AboutMeResponse => response;
 
 export const portfolioAPI = {
     getBasicUserInfo: async (): Promise<BasicInfoResponse> => {
@@ -15,6 +16,14 @@ export const portfolioAPI = {
             url: '/users/basic-info'
         });
         const result = await response.data;
-        return result.length > 0 ? toBasicUserInfo(result[0]) : Promise.reject('No user info returned from server side');
+        return result.length > 0 ? toBasicUserInfo(result[0]) : Promise.reject('No user info returned from the API');
+    },
+    getAboutMeInfo: async (): Promise<AboutMeResponse> => {
+        const response = await portfolioApiInstance.request({
+            method: "GET",
+            url: '/users/user-skills'
+        });
+        const result = await response.data;
+        return result.length > 0 ? toAboutMeInfo(result[0]) : Promise.reject('No response returned from the API');
     },
 }
