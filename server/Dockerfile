@@ -1,7 +1,5 @@
 FROM --platform=linux/arm64 node:18.18.0-alpine
-WORKDIR /app
-COPY package.json .
-COPY package-lock.json .
-COPY .env .
-RUN npm install --quiet
-COPY . .
+RUN mkdir -p /user/src/server
+COPY . /user/src/server
+WORKDIR /user/src/server
+RUN npm i --quiet
