@@ -1,9 +1,12 @@
+@use 'src/scss/common/animations' as *;
+
 .heading {
     color: orange;
 }
 
 .list-container {
     list-style: none;
+    @include fadeInUpAnimation();
 
     li::before {
         content: "\272F";

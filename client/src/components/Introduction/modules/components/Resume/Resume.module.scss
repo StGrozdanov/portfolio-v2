@@ -15,7 +15,7 @@
     box-shadow: 4px -3px 20px 0px #ccc;
     display: flex;
     flex-direction: column;
-    @include fadeInDownAnimation(0.8s);
+    @include fadeInDownAnimation(1s);
     @include descriptionFont("bold", 0.75rem);
 
     @include minWidthMediaQuery(1440px) {

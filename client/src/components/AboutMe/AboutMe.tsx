@@ -3,6 +3,7 @@ import { portfolioAPI } from '../../services/portfolio-service';
 import styles from './AboutMe.module.scss';
 import Article from './modules/Article';
 import { AboutMeResponse } from '../../services/interfaces/portfolio-service-interfaces';
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 export default function AboutMe() {
     const [aboutMe, setAboutMe] = useState<AboutMeResponse>();
@@ -19,8 +20,12 @@ export default function AboutMe() {
     return (
         <section className={styles.container}>
             <article className={styles.slogan}>
-                <h4>About Me</h4>
-                <h2><span>I am crafting</span> dreams <span>into digital</span> experiences<span>.</span></h2>
+                <AnimationOnScroll animateIn='animate__fadeInUp' animateOnce={true}>
+                    <h4>About Me</h4>
+                </AnimationOnScroll>
+                <AnimationOnScroll animateIn='animate__fadeInUp' animateOnce={true}>
+                    <h2><span>I am crafting</span> dreams <span>into digital</span> experiences<span>.</span></h2>
+                </AnimationOnScroll>
             </article>
             <div className={styles['article-container']}>
                 <Article heading={'Tech Stack'} details={aboutMe ? aboutMe.techStack : []} />

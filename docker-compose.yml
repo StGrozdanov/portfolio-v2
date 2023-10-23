@@ -18,6 +18,7 @@ services:
       - "3000:3000"
     volumes:
       - ./client:/usr/src/client
+      - /usr/src/client/node_modules
     networks:
       - default 
     depends_on:

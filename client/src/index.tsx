@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './scss/index.scss';
+import "animate.css/animate.min.css";
 import { BrowserRouter } from 'react-router-dom';
 import ScrollUponRedirect from './components/ScrollUponRedirect/ScrollUponRedirect';
 

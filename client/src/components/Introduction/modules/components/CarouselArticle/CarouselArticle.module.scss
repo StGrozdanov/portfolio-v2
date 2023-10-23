@@ -7,7 +7,7 @@
     height: 80vh;
     top: -180px;
     position: relative;
-    @include smoothTransitionHorizontalAnimation(100%, 1.7s, 700ms);
+    @include smoothTransitionHorizontalAnimation(100%, 800ms, 700ms);
 
     @include maxWidthMediaQuery(1024px) {
         width: 100%;
