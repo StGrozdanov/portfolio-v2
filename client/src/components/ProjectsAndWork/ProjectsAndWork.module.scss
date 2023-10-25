@@ -1,12 +1,34 @@
+@use 'src/scss/common/media' as *;
+
 .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     position: relative;
 
+    @include maxWidthMediaQuery(1024px) {
+        flex-direction: column;
+        align-items: center;
+    }
+
     div {
+        @include maxWidthMediaQuery(1024px) {
+            span {
+                position: initial;
+                width: 100%;
+                max-width: 100%;
+                display: block;
+                text-align: center;
+                padding-right: 0;
+            }
+        }
+
         &:nth-child(even) {
             margin-top: 300px;
+
+            @include maxWidthMediaQuery(1024px) {
+                margin-top: 0;
+            }
 
             span {
                 left: -80%;
@@ -15,7 +37,10 @@
         }
 
         &:nth-child(odd) {
-            article, img, div {
+
+            article,
+            img,
+            div {
                 border-radius: 40px;
             }
 
