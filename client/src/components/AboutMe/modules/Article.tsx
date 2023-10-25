@@ -1,9 +1,10 @@
 import styles from './Article.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCode, faHeart, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faCode, faHeart, faUsers, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { ArticleProps, IconTypes } from './article-interfaces';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { AnimationOnScroll } from 'react-animation-on-scroll';
+import { useState } from 'react';
 
 const findIcon = (heading: string): IconDefinition => {
     const icons: IconTypes = {
@@ -14,7 +15,10 @@ const findIcon = (heading: string): IconDefinition => {
     return icons[heading]
 }
 
-export default function Article({ heading, details }: ArticleProps) {
+export default function Article({ heading, details, threshold }: ArticleProps) {
+    const [ulIsExpanded, setUlIsExpanded] = useState(false);
+    const contentHandler = () => setUlIsExpanded(!ulIsExpanded);
+
     return (
         <article>
             <AnimationOnScroll animateIn='animate__fadeInUp' animateOnce={true}>
@@ -25,9 +29,39 @@ export default function Article({ heading, details }: ArticleProps) {
             </AnimationOnScroll>
             <ul className={styles['list-container']}>
                 <AnimationOnScroll animateIn='animate__fadeInUp' animateOnce={true}>
-                    {details.map(detail => <li key={detail}>{detail}</li>)}
+                    {
+                        threshold && !ulIsExpanded
+                            ?
+                            details.map((detail, index) => {
+                                if (index < threshold) {
+                                    return < li key={detail} > {detail}</li>;
+                                } else {
+                                    return;
+                                }
+                            })
+                            : details.map(detail => < li key={detail} > {detail}</li>)
+                    }
+                    {
+                        threshold && !ulIsExpanded
+                            ? <FontAwesomeIcon
+                                className={styles.icon}
+                                onClick={contentHandler}
+                                icon={faCaretDown}
+                                beatFade
+                                color='orange'
+                            />
+                            : threshold
+                                ? <FontAwesomeIcon
+                                    className={styles.icon}
+                                    onClick={contentHandler}
+                                    icon={faCaretUp}
+                                    beatFade
+                                    color='orange'
+                                />
+                                : null
+                    }
                 </AnimationOnScroll>
             </ul>
-        </article>
+        </article >
     );
 }

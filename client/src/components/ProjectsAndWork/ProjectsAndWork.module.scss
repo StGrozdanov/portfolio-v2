@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    position: relative;
+
+    div {
+        &:nth-child(even) {
+            margin-top: 300px;
+
+            span {
+                left: -80%;
+                top: 50%;
+            }
+        }
+
+        &:nth-child(odd) {
+            article, img, div {
+                border-radius: 40px;
+            }
+
+            span {
+                right: -80%;
+            }
+        }
+
+        &:nth-last-child(1) {
+            span {
+                right: -40%;
+            }
+        }
+    }
+}

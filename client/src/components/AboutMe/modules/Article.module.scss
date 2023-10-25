@@ -30,7 +30,7 @@
     }
 }
 
-article:nth-child(3) > ul > div > li::before {
+article:nth-child(3)>ul>div>li::before {
     @include maxWidthMediaQuery(1024px) {
         margin: 0;
         margin-left: -2rem;
@@ -43,5 +43,15 @@ h3 {
         margin: 0;
         padding: 15px 0;
         text-align: center;
+    }
+}
+
+.icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    @include maxWidthMediaQuery(1024px) {
+        text-align: center;
+        width: 100%;
     }
 }

@@ -1,6 +1,7 @@
 import Navigation from "./components/Navigation/Navigation";
 import Introduction from "./components/Introduction/Introduction";
 import AboutMe from "./components/AboutMe/AboutMe";
+import ProjectsAndWork from "./components/ProjectsAndWork/ProjectsAndWork";
 import { BurgerProvider } from "./contexts/BurgerContext";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <Introduction />
       </BurgerProvider>
       <AboutMe />
+      <ProjectsAndWork />
     </>
   );
 }

@@ -28,7 +28,11 @@ export default function AboutMe() {
                 </AnimationOnScroll>
             </article>
             <div className={styles['article-container']}>
-                <Article heading={'Tech Stack'} details={aboutMe ? aboutMe.techStack : []} />
+                <Article
+                    heading={'Tech Stack'}
+                    details={aboutMe ? aboutMe.techStack : []}
+                    threshold={aboutMe?.softSkills.length}
+                />
                 <Article heading={'Soft Skills'} details={aboutMe ? aboutMe.softSkills : []} />
                 <Article heading={'Hobbies'} details={aboutMe ? aboutMe.hobbies : []} />
             </div>

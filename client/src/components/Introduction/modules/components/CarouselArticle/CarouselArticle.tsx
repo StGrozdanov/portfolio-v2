@@ -1,4 +1,4 @@
-import CarouselComponent from "../../../../CarouselComponent/CarouselComponent";
+import CarouselComponent from "../../../../Carousel/CarouselComponent";
 import { Line } from "rc-progress";
 import styles from './CarouselArticle.module.scss';
 import { CarouselProps } from "../../../../../interfaces/component-props-interfaces";

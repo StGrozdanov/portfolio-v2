@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AboutMeResponse, BasicInfoResponse } from "./interfaces/portfolio-service-interfaces";
+import { AboutMeResponse, BasicInfoResponse, JobsAndProjectsResponse } from "./interfaces/portfolio-service-interfaces";
 
 const portfolioApiInstance = axios.create({
     baseURL: process.env.REACT_APP_PORTFOLIO_SERVICE_URL,
@@ -8,6 +8,7 @@ const portfolioApiInstance = axios.create({
 
 const toBasicUserInfo = (response: BasicInfoResponse): BasicInfoResponse => response;
 const toAboutMeInfo = (response: AboutMeResponse): AboutMeResponse => response;
+const toJobsAndProjects = (response: JobsAndProjectsResponse): JobsAndProjectsResponse => response;
 
 export const portfolioAPI = {
     getBasicUserInfo: async (): Promise<BasicInfoResponse> => {
@@ -26,4 +27,12 @@ export const portfolioAPI = {
         const result = await response.data;
         return result.length > 0 ? toAboutMeInfo(result[0]) : Promise.reject('No response returned from the API');
     },
+    getJobsAndProjectsInfo: async (): Promise<JobsAndProjectsResponse> => {
+        const response = await portfolioApiInstance.request({
+            method: "GET",
+            url: '/users/user-jobs-and-projects'
+        });
+        const result = await response.data;
+        return result.length > 0 ? toJobsAndProjects(result[0]) : Promise.reject('No response returned from the API');
+    }
 }
