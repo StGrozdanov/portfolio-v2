@@ -18,7 +18,7 @@ export default function ProjectsAndWork() {
     return (
         <section className={styles.container}>
             {projectsAndJobs?.jobs.map(job =>
-                <AnimationOnScroll animateIn='animate__fadeInLeft' animateOnce={true}>
+                <AnimationOnScroll key={job.company + job.title} animateIn='animate__fadeInLeft' animateOnce={true}>
                     <JobsAndProjectsCard
                         key={job.company + job.title}
                         imgUrl={job.imgUrl}
@@ -27,7 +27,7 @@ export default function ProjectsAndWork() {
                 </AnimationOnScroll>
             )}
             {projectsAndJobs?.projects.map(project =>
-                <AnimationOnScroll animateIn='animate__fadeInUp' animateOnce={true}>
+                <AnimationOnScroll key={project.repository} animateIn='animate__fadeInUp' animateOnce={true}>
                     <JobsAndProjectsCard
                         key={project.repository}
                         imgUrl={project.imgUrl}

@@ -2,6 +2,7 @@ import Navigation from "./components/Navigation/Navigation";
 import Introduction from "./components/Introduction/Introduction";
 import AboutMe from "./components/AboutMe/AboutMe";
 import ProjectsAndWork from "./components/ProjectsAndWork/ProjectsAndWork";
+import Contact from "./components/Contact/Contact";
 import { BurgerProvider } from "./contexts/BurgerContext";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       </BurgerProvider>
       <AboutMe />
       <ProjectsAndWork />
+      <Contact />
     </>
   );
 }

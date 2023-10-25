@@ -1,0 +1,187 @@
+.contact-section {
+    background-color: black;
+    color: #fff;
+    overflow: hidden;
+    padding: 100px 0;
+    transition: all 0.35s ease 0s;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.contact-section-header {
+    text-align: center;
+    padding-bottom: 70px;
+    position: relative;
+}
+
+.contact-section main {
+    display: flex;
+}
+
+.contact-section-header h2 {
+    font-size: 30px;
+}
+
+.contact-section input[type="text"],
+input[type="email"] {
+    background-color: #fff;
+    border: 1px solid #666;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555;
+    display: block;
+    height: 60px;
+    line-height: 1.42857;
+    padding: 10px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 300px;
+    margin-left: 20px;
+}
+
+input[type='text']:focus {
+    border: 3px solid #555;
+}
+
+.contact-section input[type='text'] {
+    margin-left: 0px;
+}
+
+.contact-section textarea {
+    display: block;
+    height: auto;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    width: 100%;
+}
+
+.contact-button {
+    background: #ffa100 none repeat scroll 0 0;
+    color: #000;
+    font-size: 16px;
+    padding: 10px 0;
+    transition: all 0.3s ease 0s;
+    width: 165px;
+    margin-top: 10px;
+    float: right;
+}
+
+.contact-button:hover {
+    background-color: black;
+    color: whitesmoke;
+    transition: all 0.5s ease 0s;
+    cursor: pointer;
+}
+
+.contact-section-credentials-article {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+@media all and (min-width: 1800px) {
+    .contact-section {
+        font-size: 25px;
+    }
+
+    .contact-section-header h2 {
+        font-size: 45px;
+    }
+
+    .contact-section input[type="text"],
+    input[type="email"] {
+        font-size: 25px;
+        width: 600px;
+    }
+
+    .contact-section textarea {
+        font-size: 25px;
+    }
+
+    .contact-button {
+        font-size: 25px;
+        width: 250px;
+    }
+}
+
+@media all and (max-width: 800px) {
+    .contact-section {
+        font-size: 16px;
+    }
+
+    .contact-section-header h2 {
+        font-size: 25px;
+    }
+
+    .contact-section input[type="text"],
+    input[type="email"] {
+        font-size: 15px;
+    }
+
+    .contact-section textarea {
+        font-size: 15px;
+    }
+
+    .contact-button {
+        font-size: 15px;
+    }
+}
+
+@media all and (max-width: 680px) {
+
+    .contact-section input[type="text"],
+    input[type="email"] {
+        font-size: 15px;
+        width: 32vw;
+    }
+
+    .contact-section textarea {
+        font-size: 15px;
+    }
+
+    .contact-button {
+        font-size: 15px;
+    }
+}
+
+@media all and (max-width: 550px) {
+    .contact-section-credentials-article {
+        flex-direction: column;
+        margin: 5px 0;
+    }
+
+    .contact-section main form {
+        width: 100%;
+        margin: 0 10px;
+    }
+
+    .contact-section input[type="text"],
+    input[type="email"] {
+        font-size: 14px;
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .contact-section textarea {
+        font-size: 14px;
+        margin: 0;
+    }
+
+    .contact-button {
+        font-size: 14px;
+        width: 135px;
+    }
+
+    .contact-section-header p {
+        margin: 0 5px;
+    }
+}
