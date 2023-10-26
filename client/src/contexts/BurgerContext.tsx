@@ -1,8 +1,5 @@
 import { createContext, useState } from "react";
-
-type ContainerProps = {
-    children: React.ReactNode;
-};
+import { ContainerProps } from "./types";
 
 interface BurgerContextType {
     isActive: boolean,

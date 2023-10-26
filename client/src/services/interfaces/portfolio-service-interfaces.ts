@@ -33,7 +33,7 @@ interface SocialMedia {
     email: string,
 }
 
-interface JobDetails {
+export interface JobDetails {
     company: string,
     imgUrl: string,
     title: string,
@@ -43,7 +43,7 @@ interface JobDetails {
     techStack: string[],
 }
 
-interface ProjectsDetails {
+export interface ProjectsDetails {
     title: string,
     imgUrl: string,
     started_at: Date,
