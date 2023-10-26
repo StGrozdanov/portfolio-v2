@@ -1,0 +1,154 @@
+.site-footer {
+    background: black no-repeat scroll -554px -686px;
+    color: #fff;
+    padding: 60px 0 120px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+
+    &::before {
+        background: orange none repeat scroll 0 0;
+        content: "";
+        height: 100%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        right: 41.7%;
+        bottom: 0;
+        border-left: 8vw solid transparent;
+        border-right: 8vw solid transparent;
+        border-bottom: 24vw solid orange;
+    }
+
+    .social-links {
+        list-style: outside none none;
+        margin: 0 0 20px;
+        padding: 35px 0 10px;
+
+        li {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        a {
+            border: 1px solid rgba(255, 255, 255, 1);
+            border-radius: 50%;
+            color: rgba(255, 255, 255, 1);
+            display: block;
+            font-size: 25px;
+            height: 50px;
+            line-height: 48px;
+            text-align: center;
+            width: 50px;
+        }
+    }
+}
+
+.footer-title {
+    margin: 0;
+    position: absolute;
+    left: 5%;
+    top: 20%;
+    font-weight: 400;
+    z-index: 1;
+}
+
+.site-footer-life-rules {
+    list-style: none;
+    text-align: left;
+    line-height: 1.75;
+    margin-left: 75px;
+    margin-top: 90px;
+}
+
+.site-footer-left-article {
+    width: 50%;
+}
+
+.site-footer-right-article {
+    display: inline-block;
+    position: absolute;
+    top: 12%;
+    z-index: 1;
+}
+
+.social-links a {
+    transition: all 0.75s ease 0.0s;
+}
+
+.linkedIn a:hover {
+    background: cornflowerblue;
+}
+
+.facebook a:hover {
+    background: rgba(7, 115, 216, 0.778);
+
+}
+
+.github a:hover {
+    background: dimgray;
+}
+
+.email a:hover {
+    background: sandybrown;
+}
+
+@media all and (min-width: 1800px) {
+    .site-footer .social-links a {
+        font-size: 45px;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+        width: 80px;
+    }
+
+    .site-footer-right-article {
+        font-size: 25px;
+    }
+}
+
+@media all and (max-width: 770px) {
+    .footer-title {
+        left: 5%;
+        top: 0%;
+    }
+
+    .site-footer-life-rules {
+        line-height: 1.6;
+        margin: 0;
+        position: absolute;
+        left: 55%;
+    }
+
+    .site-footer-left-article {
+        width: 100%;
+    }
+
+    .site-footer-right-article {
+        position: relative;
+        margin-top: 50px;
+        width: 100%;
+    }
+
+    .site-footer .social-links {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@media all and (max-width: 400px) {
+    .footer-title {
+        left: 2%;
+    }
+
+    .site-footer-life-rules {
+        left: 42%;
+    }
+}
