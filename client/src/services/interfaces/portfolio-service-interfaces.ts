@@ -22,6 +22,17 @@ export interface JobsAndProjectsResponse {
     projects: ProjectsDetails[],
 }
 
+export interface SocialsResponse {
+    socialMedia: SocialMedia
+}
+
+interface SocialMedia {
+    facebook: string,
+    linkedIn: string,
+    github: string,
+    email: string,
+}
+
 interface JobDetails {
     company: string,
     imgUrl: string,

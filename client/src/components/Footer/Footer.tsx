@@ -1,33 +1,45 @@
+import { useEffect, useState } from 'react';
 import styles from './Footer.module.scss';
 import { AnimationOnScroll } from 'react-animation-on-scroll';
+import { SocialsResponse } from '../../services/interfaces/portfolio-service-interfaces';
+import { portfolioAPI } from '../../services/portfolio-service';
 
 export default function Footer() {
+    const [socials, setSocials] = useState<SocialsResponse>();
+
+    useEffect(() => {
+        portfolioAPI
+            .getSocialsInfo()
+            .then(response => setSocials(response))
+            .catch(err => console.log(err));
+    }, []);
+
     return (
         <footer className={styles["site-footer"]}>
             <article className={styles['site-footer-left-article']}>
                 <ul className={styles["social-links"]}>
                     <li className={styles['facebook']}>
                         <AnimationOnScroll animateIn='animate__fadeInUp' animateOnce={true} delay={200}>
-                            <a href="#"><i className="fa fa-facebook" /></a>
+                            <a href={socials?.socialMedia.facebook}><i className="fa fa-facebook" /></a>
                         </AnimationOnScroll>
                     </li>
                     <li className={styles['linkedIn']}>
                         <AnimationOnScroll animateIn='animate__fadeInUp' animateOnce={true} delay={300}>
-                            <a href="https://www.linkedin.com/in/stoyan-grozdanov" target="blank">
+                            <a href={socials?.socialMedia.linkedIn} target="blank">
                                 <i className="fa fa-linkedin" />
                             </a>
                         </AnimationOnScroll>
                     </li>
                     <li className={styles['github']}>
                         <AnimationOnScroll animateIn='animate__fadeInUp' animateOnce={true} delay={400}>
-                            <a href="https://github.com/StGrozdanov" target="blank">
+                            <a href={socials?.socialMedia.github} target="blank">
                                 <i className="fa fa-github" />
                             </a>
                         </AnimationOnScroll>
                     </li>
                     <li className={styles['email']}>
                         <AnimationOnScroll animateIn='animate__fadeInUp' animateOnce={true} delay={500}>
-                            <a href="mailto:st.grozdanov.developer@gmail.com">
+                            <a href={`mailto:${socials?.socialMedia.email}`}>
                                 <i className="fa fa-envelope" />
                             </a>
                         </AnimationOnScroll>
