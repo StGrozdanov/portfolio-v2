@@ -1,5 +1,6 @@
 import { useBurgerContext } from '../../hooks/useBurgerContext';
 import styles from './Navigation.module.scss';
+import { Link } from 'react-scroll/modules';
 
 export default function Navigation() {
     const { isActive, update } = useBurgerContext();
@@ -18,11 +19,54 @@ export default function Navigation() {
                     }`
                 }
             >
-                <li className={styles['nav-item']}>Introduction</li>
-                <li className={styles['nav-item']}>About Me</li>
-                <li className={styles['nav-item']}>Professional Experience</li>
-                <li className={styles['nav-item']}>Personal Projects</li>
-                <li className={styles['nav-item']}>Contact Me</li>
+                <li className={styles['nav-item']}>
+                    <Link
+                        to='intro'
+                        smooth={true}
+                        duration={1400}
+                        activeClass={styles.active}
+                        spy={true}
+                        onClick={update}
+                    >
+                        Introduction
+                    </Link>
+                </li>
+                <li className={styles['nav-item']}>
+                    <Link
+                        to='about'
+                        smooth={true}
+                        duration={1400}
+                        activeClass={styles.active}
+                        spy={true}
+                        onClick={update}
+                    >
+                        About Me
+                    </Link>
+                </li>
+                <li className={styles['nav-item']}>
+                    <Link
+                        to='work'
+                        smooth={true}
+                        duration={1400}
+                        activeClass={styles.active}
+                        spy={true}
+                        onClick={update}
+                    >
+                        My Work
+                    </Link>
+                </li>
+                <li className={styles['nav-item']}>
+                    <Link
+                        to='contacts'
+                        smooth={true}
+                        duration={1400}
+                        activeClass={styles.active}
+                        spy={true}
+                        onClick={update}
+                    >
+                        Contact Me
+                    </Link>
+                </li>
             </ul>
             <div
                 className={`${styles.hamburger} ${isActive ? `, ${styles['active-burger']}` : ''

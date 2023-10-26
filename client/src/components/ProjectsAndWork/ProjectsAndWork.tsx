@@ -16,7 +16,7 @@ export default function ProjectsAndWork() {
     }, []);
 
     return (
-        <section className={styles.container}>
+        <section id='work' className={styles.container}>
             {projectsAndJobs?.jobs.map(job =>
                 <AnimationOnScroll key={job.company + job.title} animateIn='animate__fadeInLeft' animateOnce={true}>
                     <JobsAndProjectsCard

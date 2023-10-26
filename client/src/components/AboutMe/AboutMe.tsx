@@ -18,7 +18,7 @@ export default function AboutMe() {
     }, [])
 
     return (
-        <section className={styles.container}>
+        <section id='about' className={styles.container}>
             <article className={styles.slogan}>
                 <AnimationOnScroll animateIn='animate__fadeInUp' animateOnce={true}>
                     <h4>About Me</h4>

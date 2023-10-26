@@ -11,7 +11,7 @@ export default function Introduction() {
 
     return (
         <>
-            <section className={styles.container}>
+            <section id='intro' className={styles.container}>
                 <AboutMeArticle description={basicUserInfo?.aboutMe} />
                 <Resume link={basicUserInfo?.cvLink} />
                 <CarouselArticle
