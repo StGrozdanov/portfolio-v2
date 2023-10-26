@@ -1,30 +1,12 @@
 import styles from './Contact.module.scss';
-import ThankYouMessage from './modules/ThankYouMessage';
+import ThankYouMessage from './modules/components/ThankYouMessage';
 import { AnimationOnScroll } from 'react-animation-on-scroll';
-import { useRef, useState } from 'react';
-import emailjs from 'emailjs-com';
+import { useRef } from 'react';
+import { useSendEmail } from './modules/hooks/useSendEmail';
 
 export default function Contact() {
-    const [sendEmail, setSendEmail] = useState(false);
     const form = useRef(null);
-
-    function sendEmailHandler(e: React.SyntheticEvent) {
-        e.preventDefault();
-
-        const formData = new FormData(e.target as HTMLFormElement);
-        let { name, email, description } = Object.fromEntries(formData);
-
-        if (email.toString().trim() !== '' && name.toString().trim() !== '' && description.toString().trim() !== '') {
-            emailjs
-                .sendForm('service_oqn9vj9', 'template_igd22ij', form.current as unknown as string, 'n0npgfKwhAdyT8_tv')
-                .then(result => {
-                    if (result.text == 'OK') {
-                        setSendEmail(true);
-                    }
-                })
-                .catch(err => console.log(err));
-        }
-    }
+    const { emailIsSent, sendEmailHandler } = useSendEmail(form);
 
     return (
         <section id='contacts' className={styles['contact-section']}>
@@ -34,7 +16,7 @@ export default function Contact() {
             </header>
             <main>
                 <form ref={form} onSubmit={sendEmailHandler}>
-                    {sendEmail ? <ThankYouMessage /> : null}
+                    {emailIsSent ? <ThankYouMessage /> : null}
                     <AnimationOnScroll animateIn='animate__fadeInUp' animateOnce={true}>
                         <article className={styles['contact-section-credentials-article']}>
                             <input type="text" placeholder="Name" name="name" id="name" required={true} />
