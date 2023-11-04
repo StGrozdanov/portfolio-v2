@@ -1,0 +1,29 @@
+@use 'src/scss/common/media' as *;
+
+.active {
+    color: orange;
+    font-weight: bolder;
+}
+
+.nav-item {
+    list-style: none;
+    color: white;
+    transition: 0.7s ease;
+    opacity: .5;
+    padding-bottom: 25px;
+    font-size: 1.5rem;
+
+    @include minWidthMediaQuery(1920px) {
+        padding-bottom: 50px;
+        font-size: 2rem;
+    }
+
+    &:hover {
+        opacity: 0.9;
+        cursor: pointer;
+    }
+
+    &:nth-child(1) {
+        margin-top: 200px;
+    }
+}

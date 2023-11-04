@@ -1,10 +1,12 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useBurgerContext } from '../../hooks/useBurgerContext';
 import styles from './Navigation.module.scss';
-import { Link } from 'react-scroll/modules';
+import ReactScrollNavElements from './modules/ReactScrollNavElements/ReactScrollNavElements';
+import ReactRouterNavElements from './modules/ReactRouterNavElements copy/ReactRouterNavElements';
 
 export default function Navigation() {
     const { isActive, update } = useBurgerContext();
+    const location = useLocation();
 
     return (
         <nav className={styles.navbar}>
@@ -20,54 +22,11 @@ export default function Navigation() {
                     }`
                 }
             >
-                <li className={styles['nav-item']}>
-                    <Link
-                        to='intro'
-                        smooth={true}
-                        duration={1400}
-                        activeClass={styles.active}
-                        spy={true}
-                        onClick={update}
-                    >
-                        Introduction
-                    </Link>
-                </li>
-                <li className={styles['nav-item']}>
-                    <Link
-                        to='about'
-                        smooth={true}
-                        duration={1400}
-                        activeClass={styles.active}
-                        spy={true}
-                        onClick={update}
-                    >
-                        About Me
-                    </Link>
-                </li>
-                <li className={styles['nav-item']}>
-                    <Link
-                        to='work'
-                        smooth={true}
-                        duration={1400}
-                        activeClass={styles.active}
-                        spy={true}
-                        onClick={update}
-                    >
-                        My Work
-                    </Link>
-                </li>
-                <li className={styles['nav-item']}>
-                    <Link
-                        to='contacts'
-                        smooth={true}
-                        duration={1400}
-                        activeClass={styles.active}
-                        spy={true}
-                        onClick={update}
-                    >
-                        Contact Me
-                    </Link>
-                </li>
+                {
+                    location.pathname.includes('jobs') || location.pathname.includes('projects')
+                        ? <ReactRouterNavElements update={update} />
+                        : <ReactScrollNavElements update={update} />
+                }
             </ul>
             <div
                 className={`${styles.hamburger} ${isActive ? `, ${styles['active-burger']}` : ''
