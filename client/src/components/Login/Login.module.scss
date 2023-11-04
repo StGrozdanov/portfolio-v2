@@ -1,3 +1,5 @@
+@use 'src/scss/common/media' as *;
+
 @mixin triangle() {
     content: "";
     position: absolute;
@@ -18,11 +20,15 @@
 }
 
 .container {
-    margin: 0 auto;
+    margin: 100px auto;
+    margin-bottom: 0;
     width: 25vw;
-    height: 75vh;
+    height: 60vh;
     position: relative;
     background-color: white;
+    min-width: 280px;
+    max-width: 300px;
+    max-height: 400px;
 }
 
 .form-header {
