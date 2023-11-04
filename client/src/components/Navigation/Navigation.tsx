@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { useBurgerContext } from '../../hooks/useBurgerContext';
 import styles from './Navigation.module.scss';
 import { Link } from 'react-scroll/modules';
@@ -7,9 +8,9 @@ export default function Navigation() {
 
     return (
         <nav className={styles.navbar}>
-            <div className={styles.logo}>
+            <NavLink to={'/'} className={styles.logo}>
                 <img src='/images/logo.png'></img>
-            </div>
+            </NavLink>
             <ul
                 className={
                     `${styles['nav-menu']} 
