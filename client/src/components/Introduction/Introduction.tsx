@@ -22,8 +22,8 @@ export default function Introduction() {
             <section className={styles['partners-and-links-article']}>
                 <Partners partners={basicUserInfo ? basicUserInfo.partners : []} />
                 <CarouselLinks
-                    currentLabel={carouselData.currentCarouselLabel}
                     progress={carouselData.slideProgress}
+                    data={carouselData.currentCarouselLabel}
                 />
             </section>
         </>

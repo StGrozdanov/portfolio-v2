@@ -1,0 +1,22 @@
+@use 'src/scss/common/fonts' as *;
+
+.description {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 100px 0px;
+    background-color: black;
+    color: white;
+
+    h2 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    h4 {
+        margin-top: 5px;
+        margin-bottom: 20px;
+        max-width: 40%;
+        @include customHeadingFont('bolder', 0.95rem);
+    }
+}

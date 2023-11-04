@@ -1,0 +1,31 @@
+@use 'src/scss/common/fonts' as *;
+
+.description {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 100px 150px;
+
+    .description-section {
+        width: 30%;
+    }
+
+    .description-section-contribution {
+        width: 60%;
+        padding-left: 50px;
+    }
+
+    .description-section h3,
+    .description-section-contribution h3 {
+        color: grey;
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
+
+    .description-section h4,
+    .description-section-contribution h4 {
+        margin-top: 5px;
+        margin-bottom: 20px;
+        @include customHeadingFont('bolder', 0.95rem);
+    }
+}
