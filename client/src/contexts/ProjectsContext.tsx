@@ -1,26 +1,31 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { ProjectsDetails } from "../services/interfaces/portfolio-service-interfaces";
 import { ContainerProps } from "./types";
+import { portfolioAPI } from "../services/portfolio-service";
 
-interface ProjectsContextType {
+export interface ProjectsContextType {
     getProjectByTitle: (title: string) => ProjectsDetails | undefined,
-    updateProjects: (projectsData: ProjectsDetails[]) => void,
+    projects: ProjectsDetails[],
 }
 
-export const ProjectsContext = createContext<ProjectsContextType>({
-    getProjectByTitle: () => undefined,
-    updateProjects: () => console.log('projects context is not initialized yet!')
-});
+export const ProjectsContext = createContext<ProjectsContextType | null>(null);
 
 export const ProjectsProvider = ({ children }: ContainerProps) => {
-    const [projects, setProjects] = useState<ProjectsDetails[]>();
+    const [projects, setProjects] = useState<ProjectsDetails[]>([]);
+
+    useEffect(() => {
+        portfolioAPI
+            .getJobsAndProjectsInfo()
+            .then(response => updateProjects(response.projects))
+            .catch(err => console.log(err));
+    }, []);
 
     const updateProjects = (projectsData: ProjectsDetails[]) => setProjects(projectsData);
 
     const getProjectByTitle = (title: string) => projects?.find(project => title === project.title);
 
     return (
-        <ProjectsContext.Provider value={{ getProjectByTitle, updateProjects }}>
+        <ProjectsContext.Provider value={{ getProjectByTitle, projects }}>
             {children}
         </ProjectsContext.Provider>
     );

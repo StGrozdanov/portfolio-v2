@@ -13,7 +13,7 @@ export function useFetchBasicUserInfo() {
             .then(response => {
                 setBasicUserInfo(response);
                 setCarouselImages(response.carousel);
-                setCurrentCarouselLabel(response.carousel[0].label);
+                setCurrentCarouselLabel(response.carousel[0].data);
             })
             .catch(err => console.log(err));
     }, []);

@@ -10,8 +10,8 @@ import { ReactElement, ReactNode } from "react";
 export default function CarouselComponent(data: CarouselProps) {
     const slideChangeHandler = (index: number, element: ReactNode) => {
         const reactElement = element as ReactElement
-        const slideLabel = reactElement.props.label;
-        data.carouselChangeHandler && data.carouselChangeHandler(slideLabel);
+        const slideData = reactElement.props.data;
+        data.carouselChangeHandler && data.carouselChangeHandler(slideData);
     }
 
     return (

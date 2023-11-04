@@ -1,6 +1,12 @@
-export interface CarouselImage {
+export interface CarouselImageData {
+    linkTitle: string,
+    type: string,
     label: string,
+}
+
+export interface CarouselImage {
     imgURL: string,
+    data: CarouselImageData,
 }
 
 export interface BasicInfoResponse {
@@ -35,10 +41,11 @@ interface SocialMedia {
 
 export interface JobDetails {
     company: string,
-    imgUrl: string,
+    imgUrl: string[],
     title: string,
     started_at: Date,
     ended_at: Date | null,
+    concept: string,
     achievements: string[],
     techStack: string[],
 }

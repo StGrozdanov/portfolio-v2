@@ -1,7 +1,6 @@
 import styles from './JobsAndProjectsCard.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
 
 interface JobsAndProjectsCardProps {
     imgUrl: string,
