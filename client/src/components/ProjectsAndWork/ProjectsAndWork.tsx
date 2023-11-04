@@ -18,6 +18,7 @@ export default function ProjectsAndWork() {
                         key={job.company + job.title}
                         imgUrl={job.imgUrl[0]}
                         title={job.company}
+                        type="jobs"
                     />
                 </AnimationOnScroll>
             )}
@@ -25,8 +26,9 @@ export default function ProjectsAndWork() {
                 <AnimationOnScroll key={project.repository} animateIn='animate__fadeInUp' animateOnce={true}>
                     <JobsAndProjectsCard
                         key={project.repository}
-                        imgUrl={project.imgUrl}
+                        imgUrl={project.imgUrl[0]}
                         title={project.title}
+                        type="projects"
                     />
                 </AnimationOnScroll>
             )}
