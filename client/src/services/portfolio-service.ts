@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AboutMeResponse, BasicInfoResponse, JobsAndProjectsResponse, SocialsResponse } from "./interfaces/portfolio-service-interfaces";
+import { AboutMeResponse, BasicInfoResponse, JobsAndProjectsResponse, SocialsResponse, LoginResponse, AuthData } from "./interfaces/portfolio-service-interfaces";
 
 const portfolioApiInstance = axios.create({
     baseURL: process.env.REACT_APP_PORTFOLIO_SERVICE_URL,
@@ -10,6 +10,7 @@ const toBasicUserInfo = (response: BasicInfoResponse): BasicInfoResponse => resp
 const toAboutMeInfo = (response: AboutMeResponse): AboutMeResponse => response;
 const toJobsAndProjects = (response: JobsAndProjectsResponse): JobsAndProjectsResponse => response;
 const toSocials = (response: SocialsResponse): SocialsResponse => response;
+const toLoginResponse = (response: LoginResponse): LoginResponse => response;
 
 export const portfolioAPI = {
     getBasicUserInfo: async (): Promise<BasicInfoResponse> => {
@@ -43,5 +44,14 @@ export const portfolioAPI = {
         });
         const result = await response.data;
         return result.length > 0 ? toSocials(result[0]) : Promise.reject('No response returned from the API');
-    }
+    },
+    authenticate: async (data: AuthData): Promise<LoginResponse> => {
+        const response = await portfolioApiInstance.request({
+            method: "POST",
+            url: '/login',
+            data
+        });
+        const result = await response.data;
+        return result ? toLoginResponse(result) : Promise.reject('No response returned from the API');
+    },
 }

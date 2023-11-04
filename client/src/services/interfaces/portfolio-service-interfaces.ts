@@ -32,6 +32,16 @@ export interface SocialsResponse {
     socialMedia: SocialMedia
 }
 
+export interface LoginResponse {
+    token?: string,
+    errors?: string,
+}
+
+export interface AuthData {
+    username: string,
+    password: string,
+}
+
 interface SocialMedia {
     facebook: string,
     linkedIn: string,

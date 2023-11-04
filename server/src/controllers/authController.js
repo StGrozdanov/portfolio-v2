@@ -11,7 +11,7 @@ router.post('/login', (request, response) => {
             .login(request.body)
             .then(result => response.status(200).json(result))
             .catch((err) => {
-                if (err.includes('Passwords should match')) {
+                if (err.includes('Passwords should match') || err.includes('Invalid user.')) {
                     return response.status(400).json({"errors": "invalid credentials"});
                 }
                 log.error(err)

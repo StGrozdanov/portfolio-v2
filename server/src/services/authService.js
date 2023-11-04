@@ -8,7 +8,7 @@ dotenv.config();
 
 export const initAdminUser = async () => {
     const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, Number(process.env.SALT_ROUNDS));
-    return db.query(queries.updateUserPasswordQuery, {password: hashedPassword});
+    return db.query(queries.updateUserPasswordQuery, { password: hashedPassword });
 }
 
 export const login = async (userData) => {
@@ -32,6 +32,10 @@ export const login = async (userData) => {
                 }
                 resolve({ token });
             });
+        });
+    } else {
+        return new Promise((resolve, reject) => {
+            reject('Invalid user.');
         });
     }
 }
