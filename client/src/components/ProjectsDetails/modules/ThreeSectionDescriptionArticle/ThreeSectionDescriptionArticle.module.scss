@@ -1,0 +1,49 @@
+@use 'src/scss/common/fonts' as *;
+@use 'src/scss/common/media' as *;
+
+.description {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 100px 150px;
+
+    @include maxWidthMediaQuery(1024px) {
+        flex-direction: column;
+        align-items: center;
+        padding: 60px 30px;
+    }
+
+    .description-section {
+        width: 30%;
+
+        @include maxWidthMediaQuery(1024px) {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    .description-section-contribution {
+        width: 60%;
+        padding-left: 50px;
+
+        @include maxWidthMediaQuery(1024px) {
+            width: 80%;
+            text-align: center;
+            padding: 0;
+        }
+    }
+
+    .description-section h3,
+    .description-section-contribution h3 {
+        color: grey;
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
+
+    .description-section h4,
+    .description-section-contribution h4 {
+        margin-top: 5px;
+        margin-bottom: 20px;
+        @include customHeadingFont('bolder', 0.95rem);
+    }
+}

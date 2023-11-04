@@ -5,7 +5,7 @@ import HeadingImageArticle from "./modules/HeadingImageArticle/HeadingImageArtic
 import ThreeSectionDescriptionArticle from "./modules/ThreeSectionDescriptionArticle/ThreeSectionDescriptionArticle";
 import ImageArticle from "./modules/ImageArticle/ImageArticle";
 import DescriptionArticle from "./modules/DescriptionArticle/DescriptionArticle";
-import NextJobArticle from "./modules/NextProjectArticle/NextJobArticle";
+import NextJobArticle from "./modules/NextJobArticle/NextJobArticle";
 
 export default function JobsDetails() {
     const { getJobByCompanyName, jobs } = useJobsContext() as JobsContextType;
@@ -15,7 +15,7 @@ export default function JobsDetails() {
 
     return (
         <section>
-            <HeadingImageArticle companyName={job?.company} jobImgURLs={job?.imgUrl} />
+            <HeadingImageArticle jobImgURL={job?.imgUrl[0]} />
             <ThreeSectionDescriptionArticle {...job} />
             <ImageArticle imgURL={job?.imgUrl[1]} />
             <DescriptionArticle achievements={job?.achievements} />

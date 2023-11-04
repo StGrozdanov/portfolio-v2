@@ -1,0 +1,32 @@
+@use 'src/scss/common/fonts' as *;
+@use 'src/scss/common/media' as *;
+
+.description {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 100px 0px;
+    background-color: black;
+    color: white;
+
+    @include maxWidthMediaQuery(1024px) {
+        flex-direction: column;
+        padding: 20px 0px;
+    }
+
+    h2 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    h4 {
+        margin-top: 5px;
+        margin-bottom: 20px;
+        max-width: 40%;
+        @include customHeadingFont('bolder', 0.95rem);
+
+        @include maxWidthMediaQuery(1024px) {
+            max-width: 80vw;
+        }
+    }
+}

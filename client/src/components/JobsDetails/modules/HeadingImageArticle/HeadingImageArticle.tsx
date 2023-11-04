@@ -3,9 +3,9 @@ import { faArrowDownLong } from "@fortawesome/free-solid-svg-icons";
 import { useCallback } from "react";
 import styles from './HeadingImageArticle.module.scss';
 
-interface HeadingImageArticleProps { jobImgURLs?: string[], companyName?: string }
+interface HeadingImageArticleProps { jobImgURL?: string }
 
-export default function HeadingImageArticle({ jobImgURLs, companyName }: HeadingImageArticleProps) {
+export default function HeadingImageArticle({ jobImgURL }: HeadingImageArticleProps) {
     const iconClickHandler = useCallback(() => {
         window.scroll({
             behavior: 'smooth',
@@ -17,7 +17,7 @@ export default function HeadingImageArticle({ jobImgURLs, companyName }: Heading
         <article className={styles['img-article']}>
             <div
                 className={styles['img-article-container']}
-                style={{ backgroundImage: `url(${jobImgURLs ? jobImgURLs[0] : ''})` }}
+                style={{ backgroundImage: `url(${jobImgURL})` }}
             />
             <FontAwesomeIcon
                 style={{ position: 'absolute', top: '50%', right: 20, fontSize: '4rem', cursor: 'pointer' }}
