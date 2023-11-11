@@ -51,9 +51,45 @@ export const updateUserSocials = `UPDATE users
 
 export const insertVistiationsQuery = `INSERT INTO analytics (date_time, device_type, origin_country, ip_address) VALUE (:date, :deviceType, :originCountry, :ipAddress);`;
 
-export const getAnalyticsForTheDateQuery = `SELECT date_time AS date, device_type, origin_country, ip_address FROM analytics WHERE DATE(date_time) = :date;`
+export const getAnalyticsForTheDateQuery = `SELECT date_time AS date,
+                                                    device_type,
+                                                    origin_country,
+                                                    ip_address,
+                                                    (SELECT origin_country
+                                                    FROM analytics
+                                                    WHERE DATE(date_time) = :date
+                                                    GROUP BY origin_country
+                                                    ORDER BY COUNT(origin_country) DESC
+                                                    LIMIT 1) AS most_popular_country,
+                                                    (SELECT device_type
+                                                    FROM analytics
+                                                    WHERE DATE(date_time) = :date
+                                                    GROUP BY device_type
+                                                    ORDER BY COUNT(device_type) DESC
+                                                    LIMIT 1) AS most_popular_device
+                                                FROM analytics
+                                                WHERE DATE(date_time) = :date;`
 
-export const getAnalyticsBetweenTheDatesQuery = `SELECT date_time AS date, device_type, origin_country, ip_address FROM analytics WHERE DATE(date_time) BETWEEN :startDate AND :endDate;`
+export const getTodayVisitationsCountQuery = 'SELECT CAST(COUNT(id) AS varchar(10)) as today_visitations_count FROM analytics WHERE DATE(date_time) = :date'
+
+export const getAnalyticsBetweenTheDatesQuery = `SELECT date_time AS date,
+                                                        device_type,
+                                                        origin_country,
+                                                        ip_address,
+                                                        (SELECT origin_country
+                                                        FROM analytics
+                                                        WHERE DATE(date_time) BETWEEN :startDate AND :endDate
+                                                        GROUP BY origin_country
+                                                        ORDER BY COUNT(origin_country) DESC
+                                                        LIMIT 1) AS most_popular_country,
+                                                        (SELECT device_type
+                                                        FROM analytics
+                                                        WHERE DATE(date_time) BETWEEN :startDate AND :endDate
+                                                        GROUP BY device_type
+                                                        ORDER BY COUNT(device_type) DESC
+                                                        LIMIT 1) AS most_popular_device
+                                                    FROM analytics
+                                                    WHERE DATE(date_time) BETWEEN :startDate AND :endDate;`
 
 export const updateCVQuery = `UPDATE users SET cv_link = :URL`;
 

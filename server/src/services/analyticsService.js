@@ -45,17 +45,57 @@ export const addNewRecord = (input) => {
     return db.query(queries.insertVistiationsQuery, { ...input })
 }
 
-export const getAnalytics = (queryParam) => {
+export const getAnalytics = async (queryParam) => {
     const analyticKeys = Object.keys(analyticTypes);
     const queryKey = Object.keys(queryParam)[0];
+
+    let result;
 
     if (analyticKeys.includes(queryKey)) {
         if (queryKey === 'quarter') {
             const quarterNumber = queryParam[queryKey];
-            return analyticTypes['quarter'](quarterNumber);
+            result = await analyticTypes['quarter'](quarterNumber);
+        } else {
+            result = await analyticTypes[queryKey]();
         }
-        return analyticTypes[queryKey]();
-    } 
 
+        const { mostPopularCountry, mostPopularDevice } = extractMostPopularCountryAndDeviceFromResults(result);
+        const resultsOutput = sanitizeResultsOutput(result);
+
+        return {
+            results: resultsOutput,
+            totalVisitationsCount: resultsOutput.length,
+            mostPopularCountry,
+            mostPopularDevice,
+        }
+    }
     return Promise.reject(`Unsupported query param - ${queryKey}`);
+}
+
+export const getVisitationsForTheDay = () => {
+    const date = moment().utc(true).format('YYYY-MM-DD');
+    return db.query(queries.getTodayVisitationsCountQuery, { date });
+} 
+
+const extractMostPopularCountryAndDeviceFromResults = (results) => {
+    let mostPopularCountry;
+    let mostPopularDevice;
+
+    if (results.length > 0) {
+        mostPopularCountry = results[0].most_popular_country;
+        mostPopularDevice = results[0].most_popular_device;
+    }
+
+    return { mostPopularCountry, mostPopularDevice }
+}
+
+const sanitizeResultsOutput = (result) => {
+    return result.map(analytics => {
+        return {
+            date: analytics.date,
+            deviceType: analytics.device_type,
+            originCountry: analytics.origin_country,
+            ipAddress: analytics.ip_address
+        }
+    });
 }

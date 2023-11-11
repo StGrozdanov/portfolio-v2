@@ -40,4 +40,14 @@ router.get('/analytics', authMiddleware, (request, response) => {
         });
 });
 
+router.get('/analytics/count', authMiddleware, (request, response) => {
+    analyticsService
+        .getVisitationsForTheDay()
+        .then((result) => response.status(200).json(result))
+        .catch((err) => {
+            log.error(err);
+            response.status(500).json({ "errors": "Internal server error" });
+        });
+});
+
 export default router;
