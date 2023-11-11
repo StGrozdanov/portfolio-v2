@@ -14,7 +14,7 @@ export default (request, response, next) => {
         if (err) {
             return response.status(403).json({ "errors": "Invalid token" });
         }
-    });
 
-    next();
+        next();
+    });
 }
