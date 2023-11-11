@@ -9,35 +9,35 @@ export default function Navigation() {
     const location = useLocation();
 
     return (
-        <nav className={styles.navbar}>
-            <NavLink to={'/'} className={styles.logo}>
-                <img src='/images/logo.png'></img>
-            </NavLink>
-            <ul
-                className={
-                    `${styles['nav-menu']} 
-                        ${isActive
-                        ? `, ${styles['active-menu']}`
-                        : ''
-                    }`
-                }
-            >
-                {
-                    location.pathname.includes('jobs') || location.pathname.includes('projects')
-                        ? <ReactRouterNavElements update={update} />
-                        : <ReactScrollNavElements update={update} />
-                }
-            </ul>
-            <div
-                className={`${styles.hamburger} ${isActive ? `, ${styles['active-burger']}` : ''
-                    }`
-                }
-                onClick={update}
-            >
-                <span className={styles.bar}></span>
-                <span className={styles.bar}></span>
-                <span className={styles.bar}></span>
-            </div>
-        </nav>
+        location.pathname.includes('admin')
+            ? null
+            : <nav className={styles.navbar}>
+                <NavLink to={'/'} className={styles.logo}>
+                    <img src='/images/logo.png'></img>
+                </NavLink>
+                <ul
+                    className={
+                        `${styles['nav-menu']} 
+                    ${isActive
+                            ? `, ${styles['active-menu']}`
+                            : ''
+                        }`
+                    }
+                >
+                    {
+                        location.pathname.includes('jobs') || location.pathname.includes('projects')
+                            ? <ReactRouterNavElements update={update} />
+                            : <ReactScrollNavElements update={update} />
+                    }
+                </ul>
+                <div
+                    className={`${styles.hamburger} ${isActive ? `, ${styles['active-burger']}` : ''}`}
+                    onClick={update}
+                >
+                    <span className={styles.bar}></span>
+                    <span className={styles.bar}></span>
+                    <span className={styles.bar}></span>
+                </div>
+            </nav>
     );
 }
