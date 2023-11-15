@@ -69,3 +69,35 @@ export interface ProjectsDetails {
     link: string,
     repository: string,
 }
+
+export interface AnalyticsFilter {
+    query: 'today' | 'yesterday' | 'last7days' | 'last30days' | 'last90days' | 'lastYear' | number 
+}
+
+export interface AnalyticsResponse {
+    results: Analytic[],
+    totalVisitationsCount: number,
+    mostPopularCountry: string,
+    mostPopularDevice: string,
+}
+
+interface Analytic {
+    date: Date,
+    deviceType: string,
+    originCountry: string,
+    ipAddress: string,
+}
+
+export interface Visitation {
+    ipAddress?: String,
+    originCountry?: String,
+    deviceType: String,
+}
+
+export interface VisitationCountResponse {
+    today_visitations_count: string,
+}
+
+export interface AnalyticData extends AnalyticsResponse {
+    todayVisitationCount: number,
+}

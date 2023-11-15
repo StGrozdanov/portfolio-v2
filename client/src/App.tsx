@@ -12,7 +12,8 @@ import JobsDetails from "./components/JobsDetails/JobsDetails";
 import ProjectsDetails from "./components/ProjectsDetails/ProjectsDetails";
 import { AuthProvider } from "./contexts/AuthContext";
 import Login from "./components/Login/Login";
-import Admin from "./components/Admin/Admin";
+import AdminDashboard from "./components/Admin/AdminDashboard";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 function App() {
   return (
@@ -33,7 +34,11 @@ function App() {
               <Route path='/projects/:title' element={<ProjectsDetails />} />
               <Route path='/jobs/:company' element={<JobsDetails />} />
               <Route path='/login' element={<Login />} />
-              <Route path='/admin' element={<Admin />} />
+              <Route path='/admin/dashboard' element={(
+                <ProtectedRoute>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              )} />
             </Routes >
             <Footer />
           </BurgerProvider>

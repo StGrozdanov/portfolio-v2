@@ -26,7 +26,7 @@ export default function Login() {
                 .then(loginData => {
                     userLogin(loginData);
                     setLoginSuccess(true);
-                    navigate('/admin');
+                    navigate('/admin/dashboard');
                 })
                 .catch(err => {
                     setLoginSuccess(false);
