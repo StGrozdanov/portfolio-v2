@@ -1,6 +1,6 @@
 import styles from './AdminNav.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBowlRice, faChartSimple, faCommentDots, faUserLarge, faGear } from '@fortawesome/free-solid-svg-icons';
+import { faChartSimple, faUserLarge, faGear, faHandshake, faAddressCard, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { NavLink, useLocation } from 'react-router-dom';
 
 export default function AdminNav() {
@@ -35,7 +35,7 @@ export default function AdminNav() {
                 <li className={styles["admin-panel-nav-li"]}>
                     <NavLink to={'/admin/recipes'}>
                         <FontAwesomeIcon
-                            icon={faBowlRice}
+                            icon={faAddressCard}
                             className={location.pathname === '/admin/recipes' ? styles.active : ''}
                         />
                     </NavLink>
@@ -43,7 +43,15 @@ export default function AdminNav() {
                 <li className={styles["admin-panel-nav-li"]}>
                     <NavLink to={'/admin/comments'}>
                         <FontAwesomeIcon
-                            icon={faCommentDots}
+                            icon={faHandshake}
+                            className={location.pathname === '/admin/comments' ? styles.active : ''}
+                        />
+                    </NavLink>
+                </li>
+                <li className={styles["admin-panel-nav-li"]}>
+                    <NavLink to={'/admin/comments'}>
+                        <FontAwesomeIcon
+                            icon={faGlobe}
                             className={location.pathname === '/admin/comments' ? styles.active : ''}
                         />
                     </NavLink>
