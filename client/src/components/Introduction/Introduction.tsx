@@ -35,7 +35,7 @@ export default function Introduction() {
             .recordVisitation(data)
             .then(response => console.log('visitation recorded'))
             .catch(err => console.log(err));
-    }, []);
+    }, [userLocationData, visitaitonDevice]);
 
     return (
         <>
