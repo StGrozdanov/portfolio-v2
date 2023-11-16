@@ -12,12 +12,13 @@ import JobsDetails from "./components/JobsDetails/JobsDetails";
 import ProjectsDetails from "./components/ProjectsDetails/ProjectsDetails";
 import { AuthProvider } from "./contexts/AuthContext";
 import Login from "./components/Login/Login";
-import AdminDashboard from "./components/Admin/AdminDashboard";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import Skills from "./components/Admin/modules/components/Skills/Skills";
 import PersonalInfo from "./components/Admin/modules/components/PersonalInfo/PersonalInfo";
 import ProjectsAndJobs from "./components/Admin/modules/components/ProjectsAndJobs/ProjectsAndJobs";
 import Socials from "./components/Admin/modules/components/Socials/Socials";
+import AdminRoot from "./components/Admin/AdminRoot";
+import Dashboard from "./components/Admin/modules/components/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -40,27 +41,37 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/admin/dashboard' element={(
                 <ProtectedRoute>
-                  <AdminDashboard />
+                  <AdminRoot>
+                    <Dashboard />
+                  </AdminRoot>
                 </ProtectedRoute>
               )} />
               <Route path='/admin/personal-info' element={(
                 <ProtectedRoute>
-                  <PersonalInfo />
+                  <AdminRoot>
+                    <PersonalInfo />
+                  </AdminRoot>
                 </ProtectedRoute>
               )} />
               <Route path='/admin/skills' element={(
                 <ProtectedRoute>
-                  <Skills />
+                  <AdminRoot>
+                    <Skills />
+                  </AdminRoot>
                 </ProtectedRoute>
               )} />
               <Route path='/admin/projects-and-jobs' element={(
                 <ProtectedRoute>
-                  <ProjectsAndJobs />
+                  <AdminRoot>
+                    <ProjectsAndJobs />
+                  </AdminRoot>
                 </ProtectedRoute>
               )} />
               <Route path='/admin/social-media' element={(
                 <ProtectedRoute>
-                  <Socials />
+                  <AdminRoot>
+                    <Socials />
+                  </AdminRoot>
                 </ProtectedRoute>
               )} />
             </Routes >
