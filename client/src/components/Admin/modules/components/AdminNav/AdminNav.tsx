@@ -25,34 +25,34 @@ export default function AdminNav() {
                     </NavLink>
                 </li>
                 <li className={styles["admin-panel-nav-li"]}>
-                    <NavLink to={'/admin/users'}>
+                    <NavLink to={'/admin/personal-info'}>
                         <FontAwesomeIcon
                             icon={faUserLarge}
-                            className={location.pathname === '/admin/users' ? styles.active : ''}
+                            className={location.pathname === '/admin/personal-info' ? styles.active : ''}
                         />
                     </NavLink>
                 </li>
                 <li className={styles["admin-panel-nav-li"]}>
-                    <NavLink to={'/admin/recipes'}>
+                    <NavLink to={'/admin/skills'}>
                         <FontAwesomeIcon
                             icon={faAddressCard}
-                            className={location.pathname === '/admin/recipes' ? styles.active : ''}
+                            className={location.pathname === '/admin/skills' ? styles.active : ''}
                         />
                     </NavLink>
                 </li>
                 <li className={styles["admin-panel-nav-li"]}>
-                    <NavLink to={'/admin/comments'}>
+                    <NavLink to={'/admin/projects-and-jobs'}>
                         <FontAwesomeIcon
                             icon={faHandshake}
-                            className={location.pathname === '/admin/comments' ? styles.active : ''}
+                            className={location.pathname === '/admin/projects-and-jobs' ? styles.active : ''}
                         />
                     </NavLink>
                 </li>
                 <li className={styles["admin-panel-nav-li"]}>
-                    <NavLink to={'/admin/comments'}>
+                    <NavLink to={'/admin/social-media'}>
                         <FontAwesomeIcon
                             icon={faGlobe}
-                            className={location.pathname === '/admin/comments' ? styles.active : ''}
+                            className={location.pathname === '/admin/social-media' ? styles.active : ''}
                         />
                     </NavLink>
                 </li>

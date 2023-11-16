@@ -14,6 +14,10 @@ import { AuthProvider } from "./contexts/AuthContext";
 import Login from "./components/Login/Login";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Skills from "./components/Admin/modules/components/Skills/Skills";
+import PersonalInfo from "./components/Admin/modules/components/PersonalInfo/PersonalInfo";
+import ProjectsAndJobs from "./components/Admin/modules/components/ProjectsAndJobs/ProjectsAndJobs";
+import Socials from "./components/Admin/modules/components/Socials/Socials";
 
 function App() {
   return (
@@ -37,6 +41,26 @@ function App() {
               <Route path='/admin/dashboard' element={(
                 <ProtectedRoute>
                   <AdminDashboard />
+                </ProtectedRoute>
+              )} />
+              <Route path='/admin/personal-info' element={(
+                <ProtectedRoute>
+                  <PersonalInfo />
+                </ProtectedRoute>
+              )} />
+              <Route path='/admin/skills' element={(
+                <ProtectedRoute>
+                  <Skills />
+                </ProtectedRoute>
+              )} />
+              <Route path='/admin/projects-and-jobs' element={(
+                <ProtectedRoute>
+                  <ProjectsAndJobs />
+                </ProtectedRoute>
+              )} />
+              <Route path='/admin/social-media' element={(
+                <ProtectedRoute>
+                  <Socials />
                 </ProtectedRoute>
               )} />
             </Routes >
