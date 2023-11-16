@@ -1,5 +1,5 @@
 import styles from './AdminDashboard.module.scss';
-import { faComments, faEye, faFileCirclePlus, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarCheck, faEye, faLaptop, faUsers } from '@fortawesome/free-solid-svg-icons';
 import AdminNav from './modules/components/AdminNav/AdminNav';
 import AdminHeader from './modules/components/AdminHeader/AdminHeader';
 import AdminStatsCard from './modules/components/AdminStatsCard/AdminStatsCard';
@@ -22,17 +22,17 @@ export default function AdminDashboard() {
                     <main className={styles["admin-panel-content-main"]}>
                         <AdminStatsCard
                             heading={'VISITATIONS FOR ' + normalizeFilterValue(filter)}
-                            icon={faFileCirclePlus}
+                            icon={faCalendarCheck}
                             value={visitationsData?.totalVisitationsCount}
                         />
                         <AdminStatsCard
                             heading={'MOST POPULAR DEVICE'}
-                            icon={faUsers}
+                            icon={faLaptop}
                             value={visitationsData?.mostPopularDevice}
                         />
                         <AdminStatsCard
                             heading={'MOST POPULAR LOCATION'}
-                            icon={faComments}
+                            icon={faUsers}
                             value={visitationsData?.mostPopularCountry}
                         />
                         <AdminStatsCard
