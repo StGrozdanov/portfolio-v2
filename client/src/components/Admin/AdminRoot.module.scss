@@ -47,4 +47,14 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+
+    ::-moz-selection {
+        color: white;
+        background: #808ada84;
+    }
+    
+    ::selection {
+        color: white;
+        background: #808ada84;
+    }
 }

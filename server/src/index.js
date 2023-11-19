@@ -31,7 +31,7 @@ app.use(logMiddleware);
 app.use(corsMiddleware);
 app.use('/users', userController);
 app.use(analyticsController);
-app.use('/cv', s3Controller);
+app.use(s3Controller);
 app.use(authController)
 app.use('*', (request, response) => {
     response.status(404).json({ "error": "resource not found" });
