@@ -27,7 +27,13 @@ export const getUserJobsAndProjectsQuery = `SELECT jobs, projects FROM users`;
 
 export const getUserSocialMediaQuery = `SELECT social_media AS socialMedia FROM users`;
 
-export const updateBaseUserInfoQuery = `UPDATE users SET about_me = :aboutMe, cv_link = :cvLink, email = :email WHERE users.id = :id;`;
+export const updateBaseUserInfoQuery = `UPDATE users
+                                        SET about_me = :aboutMe,
+                                            cv_link  = :cvLink,
+                                            email    = :email,
+                                            partners = JSON_SET(partners, '$', JSON_ARRAY(:partners)),
+                                            carousel = :carousel
+                                        WHERE users.id = :id`;
 
 export const userExistsQuery = `SELECT id FROM users WHERE id = :id;`;
 
@@ -114,4 +120,23 @@ export const updateJobImageQuery = `UPDATE users
 
 export const uploadPartnerLogoQuery = `UPDATE users SET partners = JSON_ARRAY_APPEND(partners, '$', :img_url);`;
 
-export const uploadCarouselQuery = `UPDATE users SET carousel = JSON_ARRAY_APPEND(partners, '$', :img_url);`;
+export const uploadCarouselQuery = `UPDATE users SET carousel = JSON_ARRAY_APPEND(carousel, '$', :img_url);`;
+
+export const getProjectImages = `SELECT JSON_EXTRACT(projects, REPLACE(
+                                                        REPLACE(JSON_SEARCH(projects, 'one', :project_name), '"', ''),
+                                                        'title',
+                                                        'imgUrl')
+                                                    ) AS project_images
+                                FROM users;`;
+
+export const getJobsImages = `SELECT JSON_EXTRACT(jobs, REPLACE(
+                                                    REPLACE(JSON_SEARCH(jobs, 'one', :company_name), '"', ''),
+                                                    'company',
+                                                    'imgUrl')
+                                                ) AS job_images
+                             FROM users;`;
+
+export const getPartnerLogos = `SELECT partners FROM users WHERE id=1`;
+
+export const getCarouselImages = `SELECT JSON_EXTRACT(carousel, '$[*].imgURL') AS carousel_images FROM users WHERE id = 1;`;
+

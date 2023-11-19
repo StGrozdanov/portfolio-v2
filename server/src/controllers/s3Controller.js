@@ -14,25 +14,25 @@ router.post('/upload-cv', authMiddleware, upload.single('file'), (request, respo
 
 router.patch('/upload-project-image', authMiddleware, upload.single('image'), (request, response) => {
     s3.uploadProjectImage(request.file, request.body.targetResourceTitle)
-        .then(response.status(201).json({ 'status': 'success' }))
+        .then((result) => response.status(201).json(result))
         .catch((err) => log.error(err));
 });
 
 router.patch('/upload-job-image', authMiddleware, upload.single('image'), (request, response) => {
     s3.uploadJobImage(request.file, request.body.targetResourceTitle)
-        .then(response.status(201).json({ 'status': 'success' }))
+        .then((result) => response.status(201).json(result))
         .catch((err) => log.error(err));
 });
 
 router.post('/add-partners', authMiddleware, upload.single('image'), (request, response) => {
     s3.uploadPartnerLogo(request.file)
-        .then(response.status(201).json({ 'status': 'success' }))
+        .then((result) => response.status(201).json(result))
         .catch((err) => log.error(err));
 });
 
 router.post('/add-carousel', authMiddleware, upload.single('image'), (request, response) => {
     s3.uploadCarouselImage(request.file)
-        .then(response.status(201).json({ 'status': 'success' }))
+        .then((result) => response.status(201).json(result))
         .catch((err) => log.error(err));
 });
 

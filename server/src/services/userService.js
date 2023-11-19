@@ -12,7 +12,15 @@ export const getUserSkillsInfo = () => db.query(queries.getUserSkillsQuery);
 export const getUserSocialMediaInfo = () => db.query(queries.getUserSocialMediaQuery);
 
 export const updateBaseUserInfo = async (input) => {
-    const result = await db.query(queries.updateBaseUserInfoQuery, { ...input })
+    const result = await db.query(queries.updateBaseUserInfoQuery, {
+        aboutMe: input.aboutMe,
+        cvLink: input.cvLink,
+        email: input.email,
+        partners: input.partners,
+        carousel: JSON.stringify(input.carousel),
+        id: input.id,
+    });
+
     if (result.affectedRows > 0) {
         return getBaseUserInfo()
     }
