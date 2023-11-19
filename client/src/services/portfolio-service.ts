@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AboutMeResponse, BasicInfoResponse, JobsAndProjectsResponse, SocialsResponse, LoginResponse, AuthData, AnalyticsFilter, AnalyticsResponse, VisitationCountResponse, Visitation } from "./interfaces/portfolio-service-interfaces";
+import { AboutMeResponse, BasicInfoResponse, JobsAndProjectsResponse, SocialsResponse, LoginResponse, AuthData, AnalyticsFilter, AnalyticsResponse, VisitationCountResponse, Visitation, BasicUserInfo, PartnersUpdateResponse, CarouselsUpdateResponse, JobsUpdateResponse, ProjectsUpdateResponse } from "./interfaces/portfolio-service-interfaces";
 
 const portfolioApiInstance = axios.create({
     baseURL: process.env.REACT_APP_PORTFOLIO_SERVICE_URL,
@@ -13,6 +13,10 @@ const toSocials = (response: SocialsResponse): SocialsResponse => response;
 const toLoginResponse = (response: LoginResponse): LoginResponse => response;
 const toAnalyticsResponse = (response: AnalyticsResponse): AnalyticsResponse => response;
 const toTodayAnalyticsResponse = (response: VisitationCountResponse[]): VisitationCountResponse[] => response;
+const toPartnersUpdateResponse = (response: PartnersUpdateResponse[]): PartnersUpdateResponse[] => response;
+const toCarouselUpdateResponse = (response: CarouselsUpdateResponse[]): CarouselsUpdateResponse[] => response;
+const toJobsUpdateResponse = (response: JobsUpdateResponse[]): JobsUpdateResponse[] => response;
+const toProjectsUpdateResponse = (response: ProjectsUpdateResponse[]): ProjectsUpdateResponse[] => response;
 
 export const portfolioAPI = {
     getBasicUserInfo: async (): Promise<BasicInfoResponse> => {
@@ -81,5 +85,69 @@ export const portfolioAPI = {
             data
         });
         return response.status === 201 ? Promise.resolve() : Promise.reject('No response returned from the API')
+    },
+    uploadCV: async (data: FormData, authToken: string): Promise<void> => {
+        const response = await portfolioApiInstance.request({
+            method: "POST",
+            url: '/upload-cv',
+            data,
+            headers: { 'X-Authorization': authToken }
+        });
+        return response.status === 201 ? Promise.resolve() : Promise.reject('No response returned from the API');
+    },
+    uploadProjectImage: async (data: FormData, authToken: string, projectTitle: string): Promise<ProjectsUpdateResponse[]> => {
+        const response = await portfolioApiInstance.request({
+            method: "POST",
+            url: '/upload-project-image',
+            data: {
+                data,
+                targetResourceTitle: projectTitle,
+            },
+            headers: { 'X-Authorization': authToken }
+        });
+        const result = await response.data;
+        return response.status === 201 ? toProjectsUpdateResponse(result) : Promise.reject('No response returned from the API');
+    },
+    uploadJobImage: async (data: FormData, authToken: string, companyName: string): Promise<JobsUpdateResponse[]> => {
+        const response = await portfolioApiInstance.request({
+            method: "POST",
+            url: '/upload-job-image',
+            data: {
+                data,
+                targetResourceTitle: companyName,
+            },
+            headers: { 'X-Authorization': authToken }
+        });
+        const result = await response.data;
+        return response.status === 201 ? toJobsUpdateResponse(result) : Promise.reject('No response returned from the API');
+    },
+    uploadPartnerLogo: async (data: FormData, authToken: string): Promise<PartnersUpdateResponse[]> => {
+        const response = await portfolioApiInstance.request({
+            method: "POST",
+            url: '/add-partners',
+            data,
+            headers: { 'X-Authorization': authToken }
+        });
+        const result = await response.data;
+        return response.status === 201 ? toPartnersUpdateResponse(result) : Promise.reject('No response returned from the API');
+    },
+    uploadCarouselImage: async (data: FormData, authToken: string): Promise<CarouselsUpdateResponse[]> => {
+        const response = await portfolioApiInstance.request({
+            method: "POST",
+            url: '/add-carousel',
+            data,
+            headers: { 'X-Authorization': authToken }
+        });
+        const result = await response.data;
+        return response.status === 201 ? toCarouselUpdateResponse(result) : Promise.reject('No response returned from the API');
+    },
+    updateBaseUserInfo: async (data: BasicUserInfo, authToken: string): Promise<void> => {
+        const response = await portfolioApiInstance.request({
+            method: "PUT",
+            url: 'users/basic-info',
+            data,
+            headers: { 'X-Authorization': authToken }
+        });
+        return response.status === 200 ? Promise.resolve() : Promise.reject('No response returned from the API');
     },
 }

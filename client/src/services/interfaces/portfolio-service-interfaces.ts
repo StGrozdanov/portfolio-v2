@@ -17,6 +17,26 @@ export interface BasicInfoResponse {
     carousel: CarouselImage[],
 }
 
+export interface BasicUserInfo extends BasicInfoResponse {
+    id: number,
+}
+
+export interface PartnersUpdateResponse {
+    partners: string[],
+}
+
+export interface CarouselsUpdateResponse {
+    carousel_images: string[],
+}
+
+export interface JobsUpdateResponse {
+    job_images: string[],
+}
+
+export interface ProjectsUpdateResponse {
+    project_images: string[],
+}
+
 export interface AboutMeResponse {
     techStack: string[],
     softSkills: string[],

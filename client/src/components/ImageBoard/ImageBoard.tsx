@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import styles from './ImageBoard.module.scss';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import FileUpload from '../FileUpload/components/FileUpload';
+import FileUpload from '../FileUpload/FileUpload';
 import DraggableImage from './modules/DraggableImage';
 
 interface ImageBoardProps {
