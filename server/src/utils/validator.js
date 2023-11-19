@@ -16,6 +16,12 @@ export async function baseUserInfoInputIsValid(baseInfo) {
     if (stringIsNotEmpty(baseInfo.aboutMe) === false) {
         validationResponse.errors.push('About me section is empty');
     }
+    if (baseInfo.partners.length === 0) {
+        validationResponse.errors.push('Partners section is empty');
+    }
+    if (baseInfo.carousel.length === 0) {
+        validationResponse.errors.push('Carousel section is empty');
+    }
     if (userIdIsValid(baseInfo.id) === false) {
         validationResponse.errors.push('Invalid User Id');
     } else if (await userExists(baseInfo.id) === false) {
