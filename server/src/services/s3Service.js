@@ -80,11 +80,11 @@ export const uploadCarouselImage = async (image) => {
     }
 }
 
-export const deletePartnerLogo = async (imageURL) => {
+export const deleteImage = async (imageURL) => {
     try {
-        const fileName = imageURL.split('https://personal-portfolio-web.s3.eu-central-1.amazonaws.com/portfolio')[1];
+        const fileName = imageURL.split('https://personal-portfolio-web.s3.eu-central-1.amazonaws.com/portfolio/')[1];
         await deleteFileFromS3(fileName);
-        return Promise.resolve(`partner image - ${fileName} was successfully deleted from S3 bucket.`);
+        return Promise.resolve(`image - ${fileName} was successfully deleted from S3 bucket.`);
     } catch (err) {
         return Promise.reject(err);
     }
@@ -104,7 +104,7 @@ const uploadFileToS3 = (file, fileName) => {
 const deleteFileFromS3 = (fileName) => {
     return s3.deleteObject({
         Bucket: process.env.S3_BUCKET_NAME,
-        Key: process.env.S3_BUCKET_KEY + `${fileName}`,
+        Key: process.env.S3_BUCKET_KEY + `/${fileName}`,
     })
         .promise();
 }

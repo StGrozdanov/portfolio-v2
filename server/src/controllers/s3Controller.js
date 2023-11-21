@@ -30,8 +30,8 @@ router.post('/add-partners', authMiddleware, upload.single('image'), (request, r
         .catch((err) => log.error(err));
 });
 
-router.delete('/partners', authMiddleware, (request, response) => {
-    s3.deletePartnerLogo(request.body.imageURL)
+router.delete('/image', authMiddleware, (request, response) => {
+    s3.deleteImage(request.body.imageURL)
         .then((result) => {
             log.info(result);
             return response.status(201).json({ 'status': 'success' })
