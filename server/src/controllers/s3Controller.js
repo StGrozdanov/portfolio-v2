@@ -30,6 +30,15 @@ router.post('/add-partners', authMiddleware, upload.single('image'), (request, r
         .catch((err) => log.error(err));
 });
 
+router.delete('/partners', authMiddleware, (request, response) => {
+    s3.deletePartnerLogo(request.body.imageURL)
+        .then((result) => {
+            log.info(result);
+            return response.status(201).json({ 'status': 'success' })
+        })
+        .catch((err) => log.error(err));
+});
+
 router.post('/add-carousel', authMiddleware, upload.single('image'), (request, response) => {
     s3.uploadCarouselImage(request.file)
         .then((result) => response.status(201).json(result))

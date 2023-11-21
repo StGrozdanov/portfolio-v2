@@ -31,7 +31,7 @@ export const uploadProjectImage = async (image, targetResourceTitle) => {
         const URL = file.Location;
 
         await db.query(queries.updateProjectImageQuery, { img_url: URL, project_name: targetResourceTitle });
-        
+
         return db.query(queries.getProjectImages, { project_name: targetResourceTitle });
     } catch (err) {
         return Promise.reject(err);
@@ -57,9 +57,9 @@ export const uploadPartnerLogo = async (image) => {
         const fileName = `partner-${uuid()}`;
         const file = await uploadFileToS3(image, fileName)
         const URL = file.Location;
-        
+
         await db.query(queries.uploadPartnerLogoQuery, { img_url: URL });
-        
+
         return db.query(queries.getPartnerLogos);
     } catch (err) {
         return Promise.reject(err);
@@ -73,8 +73,18 @@ export const uploadCarouselImage = async (image) => {
         const URL = file.Location;
 
         await db.query(queries.uploadCarouselQuery, { img_url: URL });
-        
+
         return db.query(queries.getCarouselImages);
+    } catch (err) {
+        return Promise.reject(err);
+    }
+}
+
+export const deletePartnerLogo = async (imageURL) => {
+    try {
+        const fileName = imageURL.split('https://personal-portfolio-web.s3.eu-central-1.amazonaws.com/portfolio')[1];
+        await deleteFileFromS3(fileName);
+        return Promise.resolve(`partner image - ${fileName} was successfully deleted from S3 bucket.`);
     } catch (err) {
         return Promise.reject(err);
     }
@@ -88,5 +98,13 @@ const uploadFileToS3 = (file, fileName) => {
         ContentType: file.mimetype,
         ACL: 'public-read'
     })
-        .promise()
+        .promise();
+}
+
+const deleteFileFromS3 = (fileName) => {
+    return s3.deleteObject({
+        Bucket: process.env.S3_BUCKET_NAME,
+        Key: process.env.S3_BUCKET_KEY + `${fileName}`,
+    })
+        .promise();
 }
