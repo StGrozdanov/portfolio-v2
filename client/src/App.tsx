@@ -19,6 +19,7 @@ import ProjectsAndJobs from "./components/Admin/modules/components/ProjectsAndJo
 import Socials from "./components/Admin/modules/components/Socials/Socials";
 import AdminRoot from "./components/Admin/AdminRoot";
 import Dashboard from "./components/Admin/modules/components/Dashboard/Dashboard";
+import { ModalProvider } from "./contexts/ModalContext";
 
 function App() {
   return (
@@ -49,7 +50,9 @@ function App() {
               <Route path='/admin/personal-info' element={(
                 <ProtectedRoute>
                   <AdminRoot>
-                    <PersonalInfo />
+                    <ModalProvider>
+                      <PersonalInfo />
+                    </ModalProvider>
                   </AdminRoot>
                 </ProtectedRoute>
               )} />
@@ -79,7 +82,7 @@ function App() {
           </BurgerProvider>
         </JobsProvider>
       </ProjectsProvider>
-    </AuthProvider>
+    </AuthProvider >
   );
 }
 

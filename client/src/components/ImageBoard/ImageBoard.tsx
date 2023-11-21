@@ -3,6 +3,7 @@ import styles from './ImageBoard.module.scss';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import FileUpload from '../FileUpload/FileUpload';
 import DraggableImage from './modules/DraggableImage';
+import { useModalContext } from '../../hooks/useModalContext';
 
 interface ImageBoardProps {
     imageCollection: string[],
@@ -21,6 +22,7 @@ export default function ImageBoard({
     tip,
     limit,
 }: ImageBoardProps) {
+    const confirm = useModalContext();
     const dragItem = useRef<number>(0);
     const draggedOverItem = useRef<number>(0);
 
@@ -34,7 +36,7 @@ export default function ImageBoard({
     }
 
     const deleteHandler = (image: string) => {
-        const filteredImages = imageCollection.filter(imageUrl => imageUrl !== image);
+        const filteredImages = imageCollection.filter((imageUrl) => imageUrl !== image);
         updateStateHandler(filteredImages);
     }
 
@@ -51,12 +53,17 @@ export default function ImageBoard({
             <section className={styles.content}>
                 {imageCollection.map((imageURL, index) => (
                     <DraggableImage
-                        deleteHandler={deleteHandler}
+                        deleteHandler={() => {
+                            confirm({ title: 'Are you sure you want to delete this image?' })
+                                .then(() => deleteHandler(imageURL))
+                                .catch(() => console.log('action canceled.'))
+                        }}
                         dragItem={dragItem}
                         draggedOverItem={draggedOverItem}
                         imageURL={imageURL}
                         index={index}
                         sortHandler={sortHandler}
+                        key={imageURL + index}
                     />
                 ))}
             </section>
