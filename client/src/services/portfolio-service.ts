@@ -144,7 +144,16 @@ export const portfolioAPI = {
     updateBaseUserInfo: async (data: BasicUserInfo, authToken: string): Promise<void> => {
         const response = await portfolioApiInstance.request({
             method: "PUT",
-            url: 'users/basic-info',
+            url: '/users/basic-info',
+            data,
+            headers: { 'X-Authorization': authToken }
+        });
+        return response.status === 200 ? Promise.resolve() : Promise.reject('No response returned from the API');
+    },
+    deleteImage: async (data: { imageURL: string }, authToken: string): Promise<void> => {
+        const response = await portfolioApiInstance.request({
+            method: "DELETE",
+            url: '/image',
             data,
             headers: { 'X-Authorization': authToken }
         });

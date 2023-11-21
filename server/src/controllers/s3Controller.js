@@ -34,7 +34,7 @@ router.delete('/image', authMiddleware, (request, response) => {
     s3.deleteImage(request.body.imageURL)
         .then((result) => {
             log.info(result);
-            return response.status(201).json({ 'status': 'success' })
+            return response.status(200).json({ 'status': 'success' })
         })
         .catch((err) => log.error(err));
 });

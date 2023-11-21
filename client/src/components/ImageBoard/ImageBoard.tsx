@@ -4,6 +4,8 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import FileUpload from '../FileUpload/FileUpload';
 import DraggableImage from './modules/DraggableImage';
 import { useModalContext } from '../../hooks/useModalContext';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { portfolioAPI } from '../../services/portfolio-service';
 
 interface ImageBoardProps {
     imageCollection: string[],
@@ -22,6 +24,7 @@ export default function ImageBoard({
     tip,
     limit,
 }: ImageBoardProps) {
+    const { token } = useAuthContext();
     const confirm = useModalContext();
     const dragItem = useRef<number>(0);
     const draggedOverItem = useRef<number>(0);
@@ -38,6 +41,14 @@ export default function ImageBoard({
     const deleteHandler = (image: string) => {
         const filteredImages = imageCollection.filter((imageUrl) => imageUrl !== image);
         updateStateHandler(filteredImages);
+        sendS3ImageDeleteRequest(image);
+    }
+
+    const sendS3ImageDeleteRequest = (imageURL: string) => {
+        portfolioAPI
+            .deleteImage({ imageURL }, token)
+            .then(response => console.log('successfully deleted the image from s3'))
+            .catch(err => console.log(err));
     }
 
     return (
