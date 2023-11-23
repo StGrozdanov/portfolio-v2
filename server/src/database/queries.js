@@ -138,5 +138,9 @@ export const getJobsImages = `SELECT JSON_EXTRACT(jobs, REPLACE(
 
 export const getPartnerLogos = `SELECT partners FROM users WHERE id=1`;
 
-export const getCarouselImages = `SELECT JSON_EXTRACT(carousel, '$[*].imgURL') AS carousel_images FROM users WHERE id = 1;`;
-
+export const getCarouselImages = `SELECT JSON_ARRAY_APPEND(JSON_EXTRACT(carousel, '$[*].imgURL'),
+                                                            '$',
+                                                            JSON_EXTRACT(carousel, '$[last]')
+                                                            ) AS carousel_images
+                                    FROM users
+                                    WHERE id = 1;`;
