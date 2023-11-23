@@ -6,10 +6,13 @@ import DraggableImage from './modules/DraggableImage';
 import { useModalContext } from '../../hooks/useModalContext';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import { portfolioAPI } from '../../services/portfolio-service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useCarouselInputModalContext } from '../../hooks/useCarouselInputModalContext';
 
 interface ImageBoardProps {
     imageCollection: string[],
     updateStateHandler: (updatedImageCollection: string[]) => void,
+    updateFromInputHandler?: (...args: any[]) => void,
     uploadType: 'uploadCV' | 'updateProjectImage' | 'updateJobImage' | 'addPartners' | 'addCarousel',
     heading: string,
     tip?: string,
@@ -23,9 +26,11 @@ export default function ImageBoard({
     heading,
     tip,
     limit,
+    updateFromInputHandler,
 }: ImageBoardProps) {
     const { token } = useAuthContext();
-    const confirm = useModalContext();
+    const confirmModal = useModalContext();
+    const carouselInputModal = useCarouselInputModalContext();
     const dragItem = useRef<number>(0);
     const draggedOverItem = useRef<number>(0);
 
@@ -53,19 +58,33 @@ export default function ImageBoard({
 
     return (
         <article className={styles['image-container']}>
-            <FileUpload
-                fontAwesomeIcon={faPlusCircle}
-                tip={limit && imageCollection.length >= limit ? 'delete an image first' : tip}
-                uploadType={uploadType}
-                limited={limit && imageCollection.length >= limit ? true : false}
-                fileUploadCallback={updateStateHandler}
-            />
+            {
+                uploadType !== 'addCarousel'
+                    ? <FileUpload
+                        fontAwesomeIcon={faPlusCircle}
+                        tip={limit && imageCollection.length >= limit ? 'delete an image first' : tip}
+                        uploadType={uploadType}
+                        limited={limit && imageCollection.length >= limit ? true : false}
+                        fileUploadCallback={updateStateHandler}
+                    />
+                    : <FontAwesomeIcon
+                        icon={faPlusCircle}
+                        onClick={() => {
+                            carouselInputModal({
+                                title: 'Add new Carousel',
+                                updateStateHandler: updateFromInputHandler as (...args: any[]) => void,
+                            })
+                                .then(() => console.log('confirmed'))
+                                .catch(() => console.log('canceled'))
+                        }} />
+            }
+
             <h3>{heading}</h3>
             <section className={styles.content}>
                 {imageCollection.map((imageURL, index) => (
                     <DraggableImage
                         deleteHandler={() => {
-                            confirm({ title: 'Are you sure you want to delete this image?' })
+                            confirmModal({ title: 'Are you sure you want to delete this image?' })
                                 .then(() => deleteHandler(imageURL))
                                 .catch(() => console.log('action canceled.'))
                         }}

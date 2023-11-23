@@ -1,3 +1,4 @@
+import { mountedStyleModal, unmountedStyleModal } from '../utils/modalUnmountAndMountStyle';
 import styles from './ConfirmModal.module.scss';
 
 interface ConfirmModalProps {
@@ -5,18 +6,6 @@ interface ConfirmModalProps {
     onConfirm: (...args: any[]) => void,
     onCancel: (...args: any[]) => void,
 }
-
-const unmountedStyleModal = {
-    opacity: 0,
-    top: '100vh',
-    transition: 'all 700ms ease-in'
-};
-
-const mountedStyleModal = {
-    opacity: 1,
-    bottom: '100vh',
-    transition: 'all 400ms ease-in'
-};
 
 export default function ConfirmModal({ content, onConfirm, onCancel }: ConfirmModalProps) {
     return (

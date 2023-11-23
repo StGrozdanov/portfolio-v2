@@ -20,6 +20,7 @@ import Socials from "./components/Admin/modules/components/Socials/Socials";
 import AdminRoot from "./components/Admin/AdminRoot";
 import Dashboard from "./components/Admin/modules/components/Dashboard/Dashboard";
 import { ModalProvider } from "./contexts/ModalContext";
+import { CarouselInputModalProvider } from "./contexts/CarouselInputModalContext";
 
 function App() {
   return (
@@ -50,9 +51,11 @@ function App() {
               <Route path='/admin/personal-info' element={(
                 <ProtectedRoute>
                   <AdminRoot>
-                    <ModalProvider>
-                      <PersonalInfo />
-                    </ModalProvider>
+                    <CarouselInputModalProvider>
+                      <ModalProvider>
+                        <PersonalInfo />
+                      </ModalProvider>
+                    </CarouselInputModalProvider>
                   </AdminRoot>
                 </ProtectedRoute>
               )} />

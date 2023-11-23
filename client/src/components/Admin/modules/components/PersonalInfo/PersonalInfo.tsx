@@ -13,7 +13,8 @@ export default function PersonalInfo() {
         updateAboutMeRequestHandler,
         updateCarouselImagesHandler,
         updateEmailRequestHandler,
-        updatePartnersHandler
+        updatePartnersHandler,
+        addNewCarouselImageHandler,
     } = usePersonalInfo();
 
     return (
@@ -58,6 +59,7 @@ export default function PersonalInfo() {
                     updateStateHandler={updateCarouselImagesHandler}
                     uploadType="addCarousel"
                     tip="Upload Carousel"
+                    updateFromInputHandler={addNewCarouselImageHandler}
                 />
             </article>
     );

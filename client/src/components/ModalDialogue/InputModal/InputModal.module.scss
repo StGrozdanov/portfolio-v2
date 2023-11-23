@@ -13,9 +13,6 @@
     padding: 20px;
     text-align: center;
     box-shadow: 0px 2px 20px 0px #bdbdbd;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
 }
 
 .button-container {
@@ -23,6 +20,7 @@
     align-content: center;
     justify-content: space-around;
     align-items: center;
+    padding-top: 50px;
 }
 
 .cancel-btn {

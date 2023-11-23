@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BasicInfoResponse } from "../../../../../../services/interfaces/portfolio-service-interfaces";
+import { BasicInfoResponse, CarouselImage } from "../../../../../../services/interfaces/portfolio-service-interfaces";
 import { useAuthContext } from "../../../../../../hooks/useAuthContext";
 import { portfolioAPI } from "../../../../../../services/portfolio-service";
 
@@ -51,6 +51,24 @@ export const usePersonalInfo = () => {
         }
     }
 
+    const addNewCarouselImageHandler = (carouselImage: CarouselImage) => {
+        if (basicUserInfo) {
+            setBasicUserInfo((oldState) => {
+                if (oldState) {
+                    const carousel = oldState.carousel;
+                    carousel.push(carouselImage);
+
+                    portfolioAPI
+                        .updateBaseUserInfo({ ...basicUserInfo, carousel, id: 1 }, token)
+                        .then(response => console.log(response))
+                        .catch(error => console.log(error));
+
+                    return { ...oldState as BasicInfoResponse, carousel }
+                }
+            });
+        }
+    }
+
     const updateEmailRequestHandler = (email: string) => {
         if (basicUserInfo) {
             setBasicUserInfo((oldState) => {
@@ -92,5 +110,6 @@ export const usePersonalInfo = () => {
         updateCarouselImagesHandler,
         updateEmailRequestHandler,
         updatePartnersHandler,
+        addNewCarouselImageHandler,
     }
 }
