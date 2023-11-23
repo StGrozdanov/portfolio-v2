@@ -53,7 +53,7 @@ export default function CarouselInputModal({
             style={Boolean(content) ? mountedStyleModal : unmountedStyleModal}
         >
             <h1>{content}</h1>
-            <article>
+            <section className={styles['radio-button-container']}>
                 <div>
                     <input
                         type="radio"
@@ -73,21 +73,23 @@ export default function CarouselInputModal({
                     />
                     <label htmlFor="project">Project</label>
                 </div>
-            </article>
-            <input
-                type="text"
-                name="linkTitle"
-                placeholder="Link Title"
-                value={carouselData?.data.linkTitle}
-                onChange={updateLinkHandler}
-            />
-            <input
-                type="text"
-                name="label"
-                placeholder="Label"
-                value={carouselData?.data.label}
-                onChange={updateLabelHandler}
-            />
+            </section>
+            <section className={styles['input-section']}>
+                <input
+                    type="text"
+                    name="linkTitle"
+                    placeholder="Link Title"
+                    value={carouselData?.data.linkTitle}
+                    onChange={updateLinkHandler}
+                />
+                <input
+                    type="text"
+                    name="label"
+                    placeholder="Label"
+                    value={carouselData?.data.label}
+                    onChange={updateLabelHandler}
+                />
+            </section>
             <FileUpload
                 fontAwesomeIcon={faImage}
                 limited={false}
