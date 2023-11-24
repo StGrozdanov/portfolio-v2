@@ -47,7 +47,7 @@ export const updateUserJobsAndProjectsInfo = async (input) => {
 }
 
 export const updateUserSocials = async (input) => {
-    const result = await db.query(queries.updateUserSocials, { id: input.id, ...input.socialMedia });
+    const result = await db.query(queries.updateUserSocials, { ...input });
     if (result.affectedRows > 0) {
         return getUserSocialMediaInfo()
     }

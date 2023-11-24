@@ -68,11 +68,19 @@ export interface AuthData {
     password: string,
 }
 
-interface SocialMedia {
+export interface SocialMedia {
     facebook: string,
     linkedIn: string,
     github: string,
     email: string,
+}
+
+export interface SocialMediaInput {
+    facebook: string,
+    linkedIn: string,
+    github: string,
+    email: string,
+    id: number,
 }
 
 export interface JobDetails {

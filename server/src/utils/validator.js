@@ -98,16 +98,16 @@ export async function userSocialMediaIsValid(input) {
         validationResponse.errors.push('User not found');
     }
 
-    if (stringIsNotEmpty(input.socialMedia.facebook) === false) {
+    if (stringIsNotEmpty(input.facebook) === false) {
         validationResponse.errors.push('Facebook property is empty or not present');
     }
-    if (urlIsValid(input.socialMedia.linkedIn) === false) {
+    if (urlIsValid(input.linkedIn) === false) {
         validationResponse.errors.push('Linkedin property is not valid URL format');
     }
-    if (urlIsValid(input.socialMedia.github) === false) {
+    if (urlIsValid(input.github) === false) {
         validationResponse.errors.push('Github property is not valid URL format');
     }
-    if (emailIsValid(input.socialMedia.email) === false) {
+    if (emailIsValid(input.email) === false) {
         validationResponse.errors.push('Email property is empty or not present');
     }
     if (validationResponse.errors.length > 0) {
