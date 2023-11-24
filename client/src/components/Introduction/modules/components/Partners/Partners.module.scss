@@ -7,7 +7,7 @@
     margin: 0;
     padding: 0;
     align-items: center;
-    width: 50vw;
+    width: 58vw;
     @include fadeInUpAnimation(200ms, 1s);
 
     @include maxWidthMediaQuery(1024px) {
@@ -20,14 +20,14 @@
     @include maxWidthMediaQuery(400px) {
         position: absolute;
         top: 510px;
-        width: 300px;
-        left: 10%;
+        width: 350px;
+        left: 4%;
     }
 
     li {
         list-style: none;
         height: auto;
-        width: 120px;
+        width: 100px;
 
         @include minWidthMediaQuery(1920px) {
             width: 150px;
