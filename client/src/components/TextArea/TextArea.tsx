@@ -4,7 +4,7 @@ import { useDebounce } from '../../hooks/useDebounce';
 
 interface TextAreaProps extends TextareaHTMLAttributes<TextAreaProps> {
     label: string,
-    requestHandler: (input: string) => void,
+    requestHandler: (...args: any[]) => void,
 }
 
 export default function TextArea({
@@ -14,6 +14,8 @@ export default function TextArea({
     name,
     label,
     requestHandler,
+    className,
+    style,
 }: TextAreaProps) {
     const [input, setInput] = useState(defaultValue);
     const debouncedInput = useDebounce(input, 800);
@@ -24,13 +26,16 @@ export default function TextArea({
 
     useEffect(() => {
         if (debouncedInput !== '' && debouncedInput === input && input !== defaultValue) {
-            console.log(debouncedInput);
-            requestHandler(debouncedInput as string);
+            if (name === 'tech stack' || name === 'soft skills' || name === 'hobbies') {
+                requestHandler(debouncedInput, name);
+            } else {
+                requestHandler(debouncedInput);
+            }
         }
     }, [input, debouncedInput]);
 
     return (
-        <section className={styles['text-area-container']}>
+        <section className={className ? className : styles['text-area-container']} style={style}>
             <label htmlFor={name}>{label}</label>
             <textarea
                 name={name}

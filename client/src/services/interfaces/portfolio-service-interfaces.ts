@@ -43,6 +43,12 @@ export interface AboutMeResponse {
     hobbies: string[],
 }
 
+export interface AboutMeRequest {
+    techStack: string[],
+    softSkills: string[],
+    hobbies: string[],
+    id: number,
+}
 export interface JobsAndProjectsResponse {
     jobs: JobDetails[],
     projects: ProjectsDetails[],

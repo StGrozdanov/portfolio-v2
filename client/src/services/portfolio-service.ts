@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AboutMeResponse, BasicInfoResponse, JobsAndProjectsResponse, SocialsResponse, LoginResponse, AuthData, AnalyticsFilter, AnalyticsResponse, VisitationCountResponse, Visitation, BasicUserInfo, PartnersUpdateResponse, CarouselsUpdateResponse, JobsUpdateResponse, ProjectsUpdateResponse } from "./interfaces/portfolio-service-interfaces";
+import { AboutMeResponse, BasicInfoResponse, JobsAndProjectsResponse, SocialsResponse, LoginResponse, AuthData, AnalyticsFilter, AnalyticsResponse, VisitationCountResponse, Visitation, BasicUserInfo, PartnersUpdateResponse, CarouselsUpdateResponse, JobsUpdateResponse, ProjectsUpdateResponse, AboutMeRequest } from "./interfaces/portfolio-service-interfaces";
 
 const portfolioApiInstance = axios.create({
     baseURL: process.env.REACT_APP_PORTFOLIO_SERVICE_URL,
@@ -154,6 +154,15 @@ export const portfolioAPI = {
         const response = await portfolioApiInstance.request({
             method: "DELETE",
             url: '/image',
+            data,
+            headers: { 'X-Authorization': authToken }
+        });
+        return response.status === 200 ? Promise.resolve() : Promise.reject('No response returned from the API');
+    },
+    updateUserSkills: async (data: AboutMeRequest, authToken: string): Promise<void> => {
+        const response = await portfolioApiInstance.request({
+            method: "PUT",
+            url: '/users/user-skills',
             data,
             headers: { 'X-Authorization': authToken }
         });
