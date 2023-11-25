@@ -83,6 +83,17 @@ export interface SocialMediaInput {
     id: number,
 }
 
+export interface JobsAndDetailsInput {
+    id: number,
+    jobs: JobDetails[],
+    projects: ProjectsDetails[],
+}
+
+export interface JobsAndProjectsInput {
+    data: JobsAndDetailsInput,
+    authToken: string,
+}
+
 export interface JobDetails {
     company: string,
     imgUrl: string[],
@@ -96,12 +107,14 @@ export interface JobDetails {
 
 export interface ProjectsDetails {
     title: string,
-    imgUrl: string,
-    started_at: Date,
-    ended_at: Date | null,
+    imgUrl: string[],
+    startedAt: Date,
+    endedAt: Date | null,
     description: string,
     link: string,
     repository: string,
+    summary: string,
+    techStack: string[],
 }
 
 export interface AnalyticsFilter {
