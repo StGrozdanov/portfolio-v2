@@ -17,8 +17,12 @@ export default function TextArea({
     className,
     style,
 }: TextAreaProps) {
-    const [input, setInput] = useState(defaultValue);
+    const [input, setInput] = useState('');
     const debouncedInput = useDebounce(input, 800);
+
+    useEffect(() => {
+        setInput(defaultValue as string);
+    }, [defaultValue]);
 
     const inputChangeHandler = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setInput(e.target.value);

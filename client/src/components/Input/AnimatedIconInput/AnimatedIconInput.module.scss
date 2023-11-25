@@ -3,6 +3,12 @@
 .container {
     position: relative;
 
+    svg {
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+    }
+
     .input {
         position: absolute;
         bottom: -9%;

@@ -1,25 +1,26 @@
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { InputHTMLAttributes, useCallback, useEffect, useState } from "react";
-import styles from './AnimatedIconInput.module.scss';
+import styles from './Input.module.scss';
 import { useDebounce } from "../../hooks/useDebounce";
 
-interface AnimatedIconInputProps extends InputHTMLAttributes<HTMLInputElement> {
-    fontAwesomeIcon: IconProp,
+interface IconInputProps extends InputHTMLAttributes<HTMLInputElement> {
     tip?: string,
     requestHandler: (input: string) => void,
 }
 
 export default function AnimatedIconInput({
-    fontAwesomeIcon,
     defaultValue,
     className,
-    tip,
-    requestHandler
-}: AnimatedIconInputProps) {
-    const [showInput, setShowInput] = useState(false);
-    const [input, setInput] = useState(defaultValue);
+    requestHandler,
+    placeholder,
+    style,
+    name,
+}: IconInputProps) {
+    const [input, setInput] = useState('');
     const debouncedInput = useDebounce(input, 800);
+
+    useEffect(() => {
+        setInput(defaultValue as string);
+    }, [defaultValue]);
 
     const inputChangeHandler = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value);
@@ -33,18 +34,15 @@ export default function AnimatedIconInput({
 
     return (
         <div className={styles.container}>
-            <FontAwesomeIcon
-                icon={fontAwesomeIcon}
-                onClick={() => setShowInput(!showInput)}
-            />
             <input
                 className={className ? className : styles.input}
                 type="text"
-                style={showInput ? { display: 'initial' } : { display: 'none' }}
+                placeholder={placeholder}
                 value={input}
                 onChange={inputChangeHandler}
+                style={style}
+                name={name}
             />
-            {tip && <span className={styles.tooltiptext}>{tip}</span>}
         </div>
     );
 }
