@@ -8,7 +8,7 @@ export default function AdminNav() {
 
     return (
         <nav className={styles["admin-panel-nav"]}>
-            <NavLink to={'/'}>
+            <NavLink target="_blank" to={'/'}>
                 <img
                     className={styles["admin-panel-nav-logo"]}
                     src="/images/favicon.png"
