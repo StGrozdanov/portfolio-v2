@@ -1,4 +1,4 @@
-import AnimatedAlternativeIconInput from '../../../../AnimatedIconInput/AnimatedAlternativeIconInput/AnimatedAlternativeIconInput';
+import AnimatedAlternativeIconInput from '../../../../Input/AnimatedAlternativeIconInput/AnimatedAlternativeIconInput';
 import styles from './Socials.module.scss';
 import { useSocials } from './hooks/useSocials';
 

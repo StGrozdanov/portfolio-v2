@@ -1,7 +1,7 @@
 import { faEnvelope, faFileArrowUp } from "@fortawesome/free-solid-svg-icons";
 import FileUpload from "../../../../FileUpload/FileUpload";
 import styles from './PersonalInfo.module.scss';
-import AnimatedIconInput from "../../../../AnimatedIconInput/AnimatedIconInput";
+import AnimatedIconInput from "../../../../Input/AnimatedIconInput/AnimatedIconInput";
 import TextArea from "../../../../TextArea/TextArea";
 import ImageBoard from "../../../../ImageBoard/ImageBoard";
 import { usePersonalInfo } from "./hooks/usePersonalInfo";
