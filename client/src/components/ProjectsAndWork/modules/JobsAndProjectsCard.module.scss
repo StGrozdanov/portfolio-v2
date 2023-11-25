@@ -13,14 +13,14 @@
         width: 90vw;
     }
 
-    &:hover {
-        .hover-layer {
-            height: 100%
-        }
+        &:hover {
+            .hover-layer {
+                height: 100%;
+            }
 
-        .hover-link-icon {
-            font-size: 5rem;
-        }
+            .hover-link-icon {
+                display: initial;
+            }
     }
 }
 
@@ -37,7 +37,8 @@
 }
 
 .hover-link-icon {
-    font-size: 0;
+    font-size: 5rem;
+    display: none;
     position: absolute;
     top: 40%;
     left: 45%;

@@ -19,7 +19,7 @@
         }
 
         .hover-link-icon {
-            font-size: 2.5rem;
+            display: initial;
         }
     }
 
@@ -37,7 +37,8 @@
     }
 
     .hover-link-icon {
-        font-size: 0;
+        font-size: 2.5rem;
+        display: none;
         position: absolute;
         top: 40%;
         left: 45%;
