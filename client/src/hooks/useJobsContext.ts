@@ -1,4 +1,4 @@
 import { useContext } from "react";
-import { JobsContext } from "../contexts/JobsContext";
+import { JobsContext, JobsContextType } from "../contexts/JobsContext";
 
-export const useJobsContext = () => useContext(JobsContext);
+export const useJobsContext = (): JobsContextType => useContext(JobsContext) as JobsContextType;
