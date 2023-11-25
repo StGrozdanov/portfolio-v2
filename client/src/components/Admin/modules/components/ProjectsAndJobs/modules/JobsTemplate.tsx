@@ -85,7 +85,9 @@ export default function JobsTemplate({ companyName }: JobsTemplateProps) {
                 uploadType="updateJobImage"
                 tip="Upload"
                 limit={2}
-                updateStateHandler={updateJobImagesHandler} />
+                updateStateHandler={updateJobImagesHandler}
+                targetResourceTitle={job?.company}
+            />
         </div>
     )
 }

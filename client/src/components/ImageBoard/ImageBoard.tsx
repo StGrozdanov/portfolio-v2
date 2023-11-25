@@ -17,6 +17,7 @@ interface ImageBoardProps {
     heading: string,
     tip?: string,
     limit?: number,
+    targetResourceTitle?: string,
 }
 
 export default function ImageBoard({
@@ -27,6 +28,7 @@ export default function ImageBoard({
     tip,
     limit,
     updateFromInputHandler,
+    targetResourceTitle,
 }: ImageBoardProps) {
     const { token } = useAuthContext();
     const confirmModal = useModalContext();
@@ -66,6 +68,7 @@ export default function ImageBoard({
                         uploadType={uploadType}
                         limited={limit && imageCollection.length >= limit ? true : false}
                         fileUploadCallback={updateStateHandler}
+                        targetResourceTitle={targetResourceTitle}
                     />
                     : <FontAwesomeIcon
                         icon={faPlusCircle}

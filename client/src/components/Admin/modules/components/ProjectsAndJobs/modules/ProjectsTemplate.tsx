@@ -94,7 +94,9 @@ export default function ProjectsTemplate({ projectName }: ProjectsTemplateProps)
                 uploadType="updateJobImage"
                 tip="Upload"
                 limit={2}
-                updateStateHandler={updateProjectImagesHandler} />
+                updateStateHandler={updateProjectImagesHandler}
+                targetResourceTitle={project?.title}
+            />
         </div>
     )
 }
